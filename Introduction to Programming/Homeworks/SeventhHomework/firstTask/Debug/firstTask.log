@@ -1,0 +1,6 @@
+﻿  firstTask.cpp
+D:\Mitko\C++\Sofia University\Easy Homework\SeventhHomework\firstTask\firstTask.cpp(6,58): warning C4305: 'initializing': truncation from '__int64' to 'unsigned long'
+D:\Mitko\C++\Sofia University\Easy Homework\SeventhHomework\firstTask\firstTask.cpp(6,33): warning C4309: 'initializing': truncation of constant value
+D:\Mitko\C++\Sofia University\Easy Homework\SeventhHomework\firstTask\firstTask.cpp(34,12): warning C4018: '<': signed/unsigned mismatch
+D:\Mitko\C++\Sofia University\Easy Homework\SeventhHomework\firstTask\firstTask.cpp(55,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  firstTask.vcxproj -> D:\Mitko\C++\Sofia University\Easy Homework\SeventhHomework\Debug\firstTask.exe

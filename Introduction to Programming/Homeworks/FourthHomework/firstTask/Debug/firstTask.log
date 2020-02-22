@@ -1,0 +1,4 @@
+﻿  firstTask.cpp
+D:\Mitko\C++\Sofia University\Easy Homework\FourthHomework\firstTask\firstTask.cpp(43,34): warning C4018: '<=': signed/unsigned mismatch
+D:\Mitko\C++\Sofia University\Easy Homework\FourthHomework\firstTask\firstTask.cpp(48,45): warning C4018: '<=': signed/unsigned mismatch
+  firstTask.vcxproj -> D:\Mitko\C++\Sofia University\Easy Homework\FourthHomework\Debug\firstTask.exe

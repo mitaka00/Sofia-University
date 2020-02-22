@@ -1,0 +1,4 @@
+﻿  firstTask.cpp
+D:\Mitko\C++\Sofia University\Easy Homework\NinthHomework\firstTask\firstTask.cpp(98,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+D:\Mitko\C++\Sofia University\Easy Homework\NinthHomework\firstTask\firstTask.cpp(96,9): warning C4101: 'length': unreferenced local variable
+  firstTask.vcxproj -> D:\Mitko\C++\Sofia University\Easy Homework\NinthHomework\Debug\firstTask.exe

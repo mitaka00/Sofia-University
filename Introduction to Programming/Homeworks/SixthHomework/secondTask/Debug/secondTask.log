@@ -1,0 +1,3 @@
+﻿  secondTask.cpp
+D:\Mitko\C++\Sofia University\Easy Homework\SixthHomework\secondTask\secondTask.cpp(144,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  secondTask.vcxproj -> D:\Mitko\C++\Sofia University\Easy Homework\SixthHomework\Debug\secondTask.exe

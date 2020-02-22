@@ -1,0 +1,4 @@
+﻿  secondTask.cpp
+D:\Mitko\C++\Sofia University\Easy Homework\SeventhHomework\secondTask\secondTask.cpp(81,34): warning C4018: '>': signed/unsigned mismatch
+D:\Mitko\C++\Sofia University\Easy Homework\SeventhHomework\secondTask\secondTask.cpp(130,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  secondTask.vcxproj -> D:\Mitko\C++\Sofia University\Easy Homework\SeventhHomework\Debug\secondTask.exe
