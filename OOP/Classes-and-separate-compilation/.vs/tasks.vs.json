@@ -1,0 +1,15 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "task-Classes-and-separate-compilation",
+      "appliesTo": "/",
+      "type": "launch"
+    },
+    {
+      "taskLabel": "task-classes-and-separate-compilation",
+      "appliesTo": "classes-and-separate-compilation.sln",
+      "type": "launch"
+    }
+  ]
+}
