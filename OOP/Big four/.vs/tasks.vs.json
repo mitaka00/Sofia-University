@@ -1,0 +1,15 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "task-Source",
+      "appliesTo": "Practice3/Source.cpp",
+      "type": "launch"
+    },
+    {
+      "taskLabel": "task-Practice3",
+      "appliesTo": "Practice3/",
+      "type": "launch"
+    }
+  ]
+}
