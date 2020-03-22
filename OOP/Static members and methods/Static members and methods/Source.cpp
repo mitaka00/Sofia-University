@@ -3,6 +3,7 @@
 
 int main()
 {
+	//Test
 	// Simple calculator
 	std::cout << "This is a simple fraction calculator that accepts input of this type:" << std::endl;
 	std::cout << "<fraction> <operation> <fraction>" << std::endl;
