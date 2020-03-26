@@ -52,7 +52,7 @@ int Matrix::calcDeterm() const
 
 Matrix& Matrix::operator+=(const Matrix& other)
 {
-	if (row == other.row && col == other.col && row <= 3) {
+	if (row == other.row && col == other.col) {
 		for (int i = 0; i < row; i++)
 		{
 			for (int j = 0; j < col; j++)
@@ -70,7 +70,7 @@ Matrix& Matrix::operator+=(const Matrix& other)
 Matrix& Matrix::operator*=(const Matrix& other)
 {
 	int sum = 0;
-	if (row == other.col && col == other.row && row <= 3) {
+	if (row == other.col && col == other.row) {
 		for (int c = 0; c < row; c++) {
 			for (int d = 0; d < other.col; d++) {
 				for (int k = 0; k < col; k++) {
@@ -98,12 +98,13 @@ Matrix& Matrix::operator*=(const int number)
 		}
 	}
 
-	int token = number;
-	int count = 0;
-	while (token != 0) {
-		token = token / 10;
-		++count;
-	}
+	char num[32];
+	itoa(number,num,10);
+	char* token = new char[strlen(name) + strlen(num) + 1];
+	strcpy(token, num);
+	strcat(token, name);
+	delete[] name;
+	name = token;
 
 	return *this;
 }
@@ -130,15 +131,14 @@ Matrix Matrix::operator~()
 	{
 		for (int j = 0; j < col; j++)
 		{
-			matrix[j][i] = newObj.matrix[i][j];
+			newObj.matrix[j][i] = matrix[i][j];
 		}
 	}
-	clear();
-	name = new char[strlen(newObj.name) + 2];
-	strcpy(name, newObj.name);
-	strcat(name, "t");
+	newObj.name = new char[strlen(name) + 2];
+	strcpy(newObj.name, name);
+	strcat(newObj.name, "t");
 
-	return *this;
+	return newObj;
 }
 
 const char* Matrix::getName() const
@@ -224,9 +224,7 @@ void Matrix::changeName(const char* symbol,const Matrix& other)
 	strcat(token, symbol);
 	strcat(token, other.name);
 	delete[] name;
-	name = new char[strlen(token) + 1];
-	strcpy(name, token);
-	delete[] token;
+	name = token;
 }
 
 std::ostream& operator<<(std::ostream& out,const Matrix& obj)

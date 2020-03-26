@@ -25,8 +25,8 @@ int main() {
 
 	std::cout << matrix1<<std::endl<<matrix1.calcDeterm()<<std::endl;
 	std::cout << matrix2 << std::endl << matrix2.calcDeterm()<<std::endl;
-	std::cout << ~matrix1 << std::endl;
+	std::cout << ~matrix1<<std::endl;
 	std::cout << matrix1 << std::endl << matrix1.calcDeterm() << std::endl;
-
+	std::cout << matrix1*2 << std::endl << std::endl;
 	return 0;
 }

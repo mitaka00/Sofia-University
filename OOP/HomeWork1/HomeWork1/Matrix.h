@@ -3,7 +3,7 @@
 #pragma once
 #include <iostream>
 const int MAX_LENGTH = 5;
-const int MAX_NAME_LENGTH = 31;
+const int MAX_NAME_LENGTH = 32;
 
 class Matrix
 {
