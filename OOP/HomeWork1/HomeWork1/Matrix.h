@@ -1,5 +1,3 @@
-//Не е завършено нацяло
-
 #pragma once
 #include <iostream>
 const int MAX_LENGTH = 5;
