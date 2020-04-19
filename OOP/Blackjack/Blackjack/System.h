@@ -15,10 +15,11 @@ public:
 	void run();
 	void showPlayers() const;
 	double calcProbability() const ;
+	bool firstPlayerGame();
+	void dealerGame();
 
 	bool readPlayers();
 	void writePlayers();
-	bool checkName(char* name);
 
 private:
 	System();
@@ -36,8 +37,7 @@ private:
 	void savePlayers();
 	void setDeck(char* token);
 	const int convertPoints(const char* points) const;
-	bool firstPlayerGame();
-	void dealerGame();
+	bool checkName(char* name);
 	bool isTrueName(const char* name);
 };
 

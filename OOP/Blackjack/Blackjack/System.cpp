@@ -67,17 +67,6 @@ void System::writePlayers()
 	}
 }
 
-int System::includePlayer(const char* name)
-{
-	for (int i = 0; i < playersCount; i++)
-	{
-		if (strcmp(players[i].getName(), name)==0) {
-			return i;
-		}
-	}
-	return -1;
-}
-
 void System::setPlayer(const char* name)
 {
 	int index = includePlayer(name);
@@ -96,6 +85,43 @@ void System::setPlayer(const char* name)
 
 		currentPlayer = Player(name, age);
 	}
+}
+
+void System::setDeck(char* token)
+{
+	char* series = strtok(token, " ");
+	int deckCapacity = atoi(series);
+	series = strtok(nullptr, " ");
+	if (series) {
+		deck = Deck(deckCapacity, series);
+	}
+	else {
+		deck = Deck(deckCapacity);
+	}
+}
+
+void System::run()
+{
+	std::cout << "Start!" << std::endl;
+
+	if (!firstPlayerGame()) {
+		std::cout << "You loose!" << std::endl;
+		currentPlayer.getLoose();
+	}
+	else {
+		dealerPoints = 0;
+		dealerGame();
+		if (dealerPoints > 21 || dealerPoints <= currentPlayer.getCurrentPoints()) {
+			std::cout << "You win!" << std::endl;
+			currentPlayer.getWin();
+		}
+		else {
+			std::cout << "You loose!" << std::endl;
+			currentPlayer.getLoose();
+		}
+	}
+
+	savePlayers();
 }
 
 void System::savePlayers()
@@ -119,19 +145,6 @@ void System::savePlayers()
 	writePlayers();
 }
 
-void System::setDeck(char* token)
-{
-	char* series = strtok(token, " ");
-	int deckCapacity = atoi(series);
-	series = strtok(nullptr, " ");
-	if (series) {
-		deck = Deck(deckCapacity, series);
-	}
-	else {
-		deck = Deck(deckCapacity);
-	}
-}
-
 System& System::i()
 {
 	static System instance;
@@ -142,30 +155,6 @@ System::~System()
 {
 	delete[] players;
 	std::cout << "Have a nice day!" << std::endl;
-}
-
-void System::run()
-{
-	std::cout << "Start!" << std::endl;
-	
-	if (!firstPlayerGame()) {
-		std::cout << "You loose!" << std::endl;
-		currentPlayer.getLoose();
-	}
-	else {
-		dealerPoints = 0;
-		dealerGame();
-		if (dealerPoints > 21 || dealerPoints<=currentPlayer.getCurrentPoints()) {
-			std::cout << "You win!" << std::endl;
-			currentPlayer.getWin();
-		}
-		else {
-			std::cout << "You loose!" << std::endl;
-			currentPlayer.getLoose();
-		}
-	}
-
-	savePlayers();
 }
 
 void System::showPlayers() const
@@ -312,4 +301,15 @@ bool System::checkName(char* name)
 	strcat(name, " ");
 	strcat(name, secondName);
 	return true;
+}
+
+int System::includePlayer(const char* name)
+{
+	for (int i = 0; i < playersCount; i++)
+	{
+		if (strcmp(players[i].getName(), name) == 0) {
+			return i;
+		}
+	}
+	return -1;
 }
