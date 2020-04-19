@@ -18,6 +18,7 @@ public:
 
 	bool readPlayers();
 	void writePlayers();
+	bool checkName(char* name);
 
 private:
 	System();
@@ -37,5 +38,6 @@ private:
 	const int convertPoints(const char* points) const;
 	bool firstPlayerGame();
 	void dealerGame();
+	bool isTrueName(const char* name);
 };
 

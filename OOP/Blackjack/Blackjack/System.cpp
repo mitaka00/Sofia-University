@@ -5,7 +5,7 @@
 #include <time.h> 
 #include "System.h"
 
-const int TOKENS_LENGTH = 20;
+const int TOKENS_LENGTH = 30;
 
 const char* fileName = "players.db";
 
@@ -21,7 +21,14 @@ System::System()
 		std::cout << "No player in database. Please enter a new Player:"<<std::endl;
 	}
 	
-	std::cin >> input;
+	bool isGoodName = true;
+	do {
+		if (!isGoodName) {
+			std::cout << "Invalid name. Please try again: ";
+		}
+		std::cin.getline(input, TOKENS_LENGTH);
+		isGoodName = false;
+	} while (!checkName(input));
 	setPlayer(input);
 
 	std::cout << "You will play as " << input << ". Choose the size of deck:";
@@ -264,4 +271,45 @@ void System::dealerGame()
 	} while (dealerPoints <= 17);
 
 	std::cout << "	(Points: " << dealerPoints << ")" << std::endl;
+}
+
+bool System::isTrueName(const char* name)
+{
+	int length = strlen(name);
+	if (name[0] < 'A' || name[0]>'Z') {
+		return false;
+	}
+	for (int i = 1; i < length; i++)
+	{
+		if (name[i] < 'a' || name[i]>'z') {
+			return false;
+		}
+	}
+
+	return true;
+}
+
+bool System::checkName(char* name)
+{
+	char* token = strtok(name, " ");
+	char firstName[TOKENS_LENGTH];
+	strcpy(firstName, token);
+	if (!isTrueName(firstName)) {
+		return false;
+	}
+
+	token = strtok(nullptr, " ");
+	if (!token) {
+		return false;
+	}
+	char secondName[TOKENS_LENGTH];
+	strcpy(secondName, token);
+	if (!isTrueName(secondName)) {
+		return false;
+	}
+
+	strcpy(name, firstName);
+	strcat(name, " ");
+	strcat(name, secondName);
+	return true;
 }
