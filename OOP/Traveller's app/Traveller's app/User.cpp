@@ -2,6 +2,8 @@
 #include <iostream>
 #include <cstring>
 
+const int MAX_TOKEN_LENGTH = 30;
+
 User::User(const char* username, const char* password, const char* email):
 	username(new char[strlen(username)+1]),
 	password(new char[strlen(password) + 1]),
@@ -55,8 +57,16 @@ void User::serialize(std::ofstream& out) const
 	writeParam(email, out);
 }
 
-void User::readFriends(std::ifstream& in)
+void User::readFriends()
 {
+	char token[MAX_TOKEN_LENGTH];
+	strcpy(token, username);
+
+	std::ifstream in(strcat(token,"Friends.db"), std::ios::binary);
+	if (!in) {
+		std::cout << "error";
+	}
+
 	int friendsLength;
 	in.read((char*)&friendsLength, sizeof(friendsLength));
 	friends.resize(friendsLength);
@@ -67,10 +77,20 @@ void User::readFriends(std::ifstream& in)
 		friends[i].resize(currentLength);
 		in.read((char*)&friends[i][0], currentLength);
 	}
+
+	in.close();
 }
 
-void User::writeFriends(std::ofstream& out) const
+void User::writeFriends() const
 {
+	char token[MAX_TOKEN_LENGTH];
+	strcpy(token, username);
+
+	std::ofstream out(strcat(token, "Friends.db"), std::ios::binary);
+	if (!out) {
+		std::cout << "error";
+	}
+
 	int len = friends.size();
 	out.write((const char*)&len, sizeof(len));
 	for (int i = 0; i < len; i++)
@@ -79,6 +99,8 @@ void User::writeFriends(std::ofstream& out) const
 		out.write((const char*)&currentLength, sizeof(currentLength));
 		out.write((const char*)&friends[i][0], currentLength);
 	}
+
+	out.close();
 }
 
 void User::addFriend(const char* friendUser)

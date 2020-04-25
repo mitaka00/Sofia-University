@@ -12,27 +12,26 @@ public:
 	void operator=(const System&) = delete;
 	~System();
 
-	bool loginUser();
-	bool registerUser();
-
 	void printHelp() const;
+	void addFriend(const char* name);
 
 	void run();
 
 private:
 	System();
 
+	bool logged;
 	void start();
 
-	void readUsersFile(const char* fileName);
-	void writeUsersFile(const char* fileName) const;
-	void readFriendsFile(const char* fileName);
-	void writeFriendsFile(const char* fileName) const;
-
 	std::vector<User> users;
+	void readUsersFile(const char* fileName);
+	void writeUsersFile(const char* fileName) const;	
+	bool loginUser();
+	bool registerUser();
 	User currentUser;
 
-	std::vector<Destination> destinations;
-	bool logged;
+	std::vector<std::string> destinations;
+	void readDestinationsFile(const char* fileName);
+	void writeDestinationsFile(const char* fileName);
 };
 

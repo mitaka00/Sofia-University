@@ -12,8 +12,8 @@ public:
 	~User();
 	void serialize(std::ofstream& out) const;
 
-	void readFriends(std::ifstream& in);
-	void writeFriends(std::ofstream& out) const;
+	void readFriends();
+	void writeFriends() const;
 	void addFriend(const char* friendUser);
 	void showFriends() const;
 

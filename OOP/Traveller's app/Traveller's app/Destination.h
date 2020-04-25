@@ -22,7 +22,7 @@ private:
 	Date start;
 	Date end;
 
-	std::vector<char*>Images;
+	std::vector<std::string>Images;
 
 	void clear();
 	void copy(Destination& other);
