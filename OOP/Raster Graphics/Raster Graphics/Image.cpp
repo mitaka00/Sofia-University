@@ -27,9 +27,10 @@ Image::Image(const char* name)
 
 Image::Image(std::ifstream& in)
 {
-	
+	ImageFormat(in);
 }
 
 void Image::serialize(std::ofstream& out) const
 {
+	
 }

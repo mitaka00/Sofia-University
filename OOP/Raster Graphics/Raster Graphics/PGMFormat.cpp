@@ -5,3 +5,9 @@ PGMFormat::PGMFormat(int width, int height, int maxValue):
 	maxValue(maxValue)
 {
 }
+
+void PGMFormat::serialize(std::ofstream& out) const
+{
+	ImageFormat::serialize(out);
+	//todo
+}

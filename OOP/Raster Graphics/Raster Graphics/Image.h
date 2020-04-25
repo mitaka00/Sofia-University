@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <fstream>
+#include "ImageFormat.h"
 #include "PPMFormat.h"
 #include "PGMFormat.h"
 #include "PBMFormat.h"

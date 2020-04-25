@@ -5,3 +5,9 @@ PPMFormat::PPMFormat(int width, int height, int maxValue):
 	maxValue(maxValue)
 {
 }
+
+void PPMFormat::serialize(std::ofstream& out) const
+{
+	ImageFormat::serialize(out);
+	//todo
+}
