@@ -2,6 +2,7 @@
 #include <fstream>
 #include <vector>
 #include <string>
+#include "Destination.h"
 class User
 {
 public:
@@ -26,6 +27,7 @@ private:
 	char* password;
 	char* email;
 	std::vector<std::string> friends;
+	std::vector<Destination> destinations;
 
 	void clear();
 	void copy(const User& other);

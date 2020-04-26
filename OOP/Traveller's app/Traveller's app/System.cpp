@@ -1,8 +1,10 @@
 #include <iostream>
 #include <cstring>
+#include <string>
 #include "System.h"
 #include "Date.h"
 
+using string = std::string;
 const int MAX_CMD_LEN = 15;
 const int MAX_INPUT_LEN = 128;
 
@@ -95,7 +97,7 @@ void System::writeUsersFile(const char* fileName) const
 }
 
 //Read all destinations in Database
-void System::readDestinationsFile(const char* fileName)
+void System::readDestinationsFile(const string fileName)
 {
 	std::ifstream in(fileName, std::ios::binary);
 	if (!in) {
@@ -104,7 +106,7 @@ void System::readDestinationsFile(const char* fileName)
 	else {
 		int size = destinations.size();
 		in.read((char*)&size, sizeof(size));
-		destinations.reserve(size);
+		destinations.resize(size);
 
 		for (int i = 0; i < size; i++)
 		{
@@ -118,7 +120,7 @@ void System::readDestinationsFile(const char* fileName)
 }
 
 //Save all destinations in Database
-void System::writeDestinationsFile(const char* fileName)
+void System::writeDestinationsFile(const string fileName)
 {
 	std::ofstream out(fileName, std::ios::binary);
 	if (!out) {
@@ -199,11 +201,53 @@ bool System::loginUser()
 void System::printHelp() const
 {
 	std::cout << " - List of commands - " << std::endl
-		<< "\tcreate <departure> <destination> <money> - Create flight." << std::endl
+		<< "\taddDestination - add destination to your destinations." << std::endl
 		<< "\tfriends - shows all your friends." << std::endl
 		<< "\taddFriend <name> - add friend with that name" << std::endl
 		<< "\thelp - shows info about the commands." << std::endl
 		<< "\tbye - terminates the program." << std::endl;
+}
+
+System::~System()
+{
+	std::cout << "Have a nice day!" << std::endl;
+}
+
+//All operations you can use
+void System::run()
+{
+	printHelp();
+
+	char input[MAX_CMD_LEN];
+
+	for (;;) {
+		std::cin >> input;
+		if (strcmp(input, "addDestination") == 0) {
+			addDestination();
+		}
+		else if (strcmp(input, "addFriend") == 0) {
+			char friendName[MAX_CMD_LEN];
+			std::cin >> friendName;
+			addFriend(friendName);
+		}
+		else if (strcmp(input, "friends") == 0) {
+			currentUser.showFriends();
+		}
+		else if (strcmp(input, "help") == 0) {
+			printHelp();
+		}
+		else if (strcmp(input, "bye") == 0) {
+			break;
+		}
+		else {
+			std::cout << "Unknown command! Type 'help' for available commands." << std::endl;
+		}
+	}
+	/*
+	TODO...
+	LIST FRIENDS DESTINATIONS AND COMMENTS
+	LIST DESTINATION'S GRADES AND AVERAGE GRADE
+	*/
 }
 
 //Add friend to your friend list
@@ -228,65 +272,84 @@ void System::addFriend(const char* friendName)
 	}
 }
 
-System::~System()
+void System::addDestination()
 {
-	std::cout << "Have a nice day!" << std::endl;
-}
+	Destination currentDestination = inputDestination();
 
-//All operations you can use
-void System::run()
-{
-	printHelp();
-
-	char input[MAX_CMD_LEN];
-
-	for (;;) {
-		std::cin >> input;
-		if (strcmp(input, "addDestination") == 0) {
-			char destName[MAX_INPUT_LEN];
-			int grade;
-			Date startDate;
-			Date endDate;
-			char comment[MAX_INPUT_LEN];
-			
-			/*
-			TODO...
-
-			std::cout << "Enter destination name: ";
-			std::cin >> destName;
-			std::cout << std::endl << "Enter grade from 1 to 5: ";
-			do {
-				std::cin >> grade;
-				if (grade < 1 || grade>5) {
-					std::cout << std::endl << "Invalid grade. Please try again";
-				}
-			} while (grade < 1 || grade>5);
-			std::cout << std::endl << "Enter start date [YYYY]-[MM]-[DD]: ";
-			std::cin >> startDate;
-			std::cout << std::endl << "Enter end date [YYYY]-[MM]-[DD]: ";
-			std::cin >> endDate;
-			if (!startDate || !endDate || endDate < startDate) {
-
-			};*/
-			
-		}
-		else if (strcmp(input, "addFriend") == 0) {
-			char friendName[MAX_CMD_LEN];
-			std::cin >> friendName;
-			addFriend(friendName);
-		}
-		else if (strcmp(input, "friends") == 0) {
-			currentUser.showFriends();
-		}
-		else if (strcmp(input, "help") == 0) {
-			printHelp();
-		}
-		else if (strcmp(input, "bye") == 0) {
+	//Check is current destination already created
+	bool isCreated = false;
+	for (int i = 0; i < destinations.size(); i++)
+	{
+		if (destinations[i] == currentDestination.getName()) {
+			isCreated = true;
 			break;
 		}
-		else {
-			std::cout << "Unknown command! Type 'help' for available commands." << std::endl;
-		}
+	}
+	if (!isCreated) {
+		destinations.push_back(currentDestination.getName());
+		writeDestinationsFile("destinations.db");
 	}
 	
+	std::cout << "Destinations is created. Do you want to add images: (yes/no):";
+	/*
+	TODO...
+	ADD IMAGES
+	ADD TO USER PRIVATE DB
+	*/
+}
+
+//Add destination to your Database
+const Destination System::inputDestination()
+{
+	string destName;
+	int grade;
+	Date startDate;
+	Date endDate;
+	string comment;
+
+	//Enter name
+	std::cout << "Enter destination name:";
+	std::cin.ignore();
+	std::getline(std::cin, destName);
+
+	//Enter grade
+	std::cout << std::endl << "Enter grade from 1 to 5:";
+	do {
+		std::cin >> grade;
+		if (grade < 1 || grade>5) {
+			std::cout << std::endl << "Grade have to be between 1 and 5. Please try again:";
+		}
+	} while (grade < 1 || grade>5);
+
+	//Enter start and end Date
+	bool checkDate = true;
+	do {
+		if (!checkDate) {
+			std::cout << "Starting date must be lower than ending date\n";
+		}
+		do {
+			std::cout<< "Enter start date [YYYY]-[MM]-[DD]:";
+			std::cin >> startDate;
+			if (!startDate.isTrueDate()) {
+				std::cout << "Invalid date. Please try again\n";
+			}
+		} while (!startDate.isTrueDate());
+
+		do {
+			std::cout<< "Enter end date [YYYY]-[MM]-[DD]:";
+			std::cin >> endDate;
+			if (!endDate.isTrueDate()) {
+				std::cout << "Invalid date. Please try again\n";
+			}
+		} while (!endDate.isTrueDate());
+		checkDate = false;
+
+	} while (!(startDate <= endDate));
+	
+	//Enter comment
+	std::cout << "Enter comment:";
+	std::getline(std::cin, comment);
+
+	Destination currentDestination(destName, grade, comment, startDate, endDate);
+	return currentDestination;
 }

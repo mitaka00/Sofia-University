@@ -1,31 +1,33 @@
 #pragma once
 #include <iostream>
 #include <vector>
+#include <string>
 #include <ctime>
 
 #include "Date.h"
 
+using string = std::string;
 class Destination
 {
 public:
-	Destination(const char* name = "", int grade = 1, const char* comment = "", Date start = Date(), Date end = Date());
-	Destination(Destination& other);
-	Destination& operator=(Destination& other);
-	~Destination();
+	Destination(const string name = "", int grade = 1, const string comment = "", Date start = Date(), Date end = Date());
+	Destination(const Destination& other);
+	Destination& operator=(const Destination& other);
 
-	void addImage(const char* imageName);
+	void addImage(const string imageName);
+
+	const string getName() const  { return name; };
 
 private:
-	char* name;
+	string name;
 	int grade;
-	char* comment;
+	string comment;
 	Date start;
 	Date end;
 
-	std::vector<std::string>Images;
-
-	void clear();
-	void copy(Destination& other);
+	std::vector<string>images;
+	
+	void copy(const Destination& other);
 };
 
 std::ostream& operator<<(std::ostream& out,Destination obj);

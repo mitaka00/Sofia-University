@@ -4,9 +4,10 @@ class Date
 {
 public:
 	Date(int year=0,int month=0,int day=0);
-	Date& operator=(Date& other);
+	Date& operator=(const Date& other);
 
-	//operator <
+	bool operator<=(const Date& other)const;
+	bool isTrueDate()const;
 
 	void setYear(int year) { this->year = year; };
 	void setMonth(int month) { this->month = month; };

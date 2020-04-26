@@ -1,6 +1,7 @@
 #include "Date.h"
 #include <cstdlib>
 const int MAXN_LENGTH = 32;
+const int CURRENT_YEAR = 2020;
 
 Date::Date(int year, int month, int day) :
 	year(year),
@@ -8,13 +9,39 @@ Date::Date(int year, int month, int day) :
 	day(day)
 {}
 
-Date& Date::operator=(Date & other)
+Date& Date::operator=(const Date & other)
 {
 	year = other.year;
 	month = other.month;
 	day = other.day;
 
 	return *this;
+}
+
+bool Date::operator<=(const Date& other) const
+{
+	if (year < other.year) {
+		return true;
+	}
+	else if (year > other.year) {
+		return false;
+	}
+	else {
+		if (month < other.month) {
+			return true;
+		}
+		else if (month > other.month) {
+			return false;
+		}
+		else {
+			if (day <= other.day) {
+				return true;
+			}
+			else if (day > other.day) {
+				return false;
+			}
+		}
+	}
 }
 
 std::ostream& operator<<(std::ostream& out, Date& obj)
@@ -26,17 +53,39 @@ std::ostream& operator<<(std::ostream& out, Date& obj)
 std::istream& operator>>(std::istream& in, Date& obj)
 {
 	char input[MAXN_LENGTH];
-	in.getline(input, MAXN_LENGTH);
+	in >> input;
 
 	char* tokens;
 	tokens = strtok(input, "-");
-	obj.setYear(atoi(tokens));
+	if (tokens == nullptr) {
+		obj.setYear(0);
+	}
+	else {
+		obj.setYear(atoi(tokens));
+	}
 	
 	tokens = strtok(nullptr, "-");
-	obj.setMonth(atoi(tokens));
+	if (tokens == nullptr) {
+		obj.setMonth(0);
+	}
+	else {
+		obj.setMonth(atoi(tokens));
+	}
 	
 	tokens = strtok(nullptr, "-");
-	obj.setDay(atoi(tokens));
-
+	if (tokens == nullptr) {
+		obj.setDay(0);
+	}
+	else {
+		obj.setDay(atoi(tokens));
+	}
 	return in;
+}
+
+bool Date::isTrueDate() const
+{
+	if (day <= 0 || day>31 || year <= 0 || year>CURRENT_YEAR || month <= 0 || month>12) {
+		return false;
+	}
+	return true;
 }

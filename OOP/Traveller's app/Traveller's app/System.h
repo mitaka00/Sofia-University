@@ -1,9 +1,11 @@
 #pragma once
 #include <iostream>
 #include <vector>
+#include <string>
 #include "User.h"
 #include "Destination.h"
 
+using string = std::string;
 class System
 {
 public:
@@ -14,24 +16,27 @@ public:
 
 	void printHelp() const;
 	void addFriend(const char* name);
+	void addDestination();
 
 	void run();
 
 private:
 	System();
 
-	bool logged;
-	void start();
-
+	User currentUser;
 	std::vector<User> users;
+	std::vector<std::string> destinations;
+	bool logged;
+
+	void start();
+	
 	void readUsersFile(const char* fileName);
 	void writeUsersFile(const char* fileName) const;	
 	bool loginUser();
 	bool registerUser();
-	User currentUser;
-
-	std::vector<std::string> destinations;
-	void readDestinationsFile(const char* fileName);
-	void writeDestinationsFile(const char* fileName);
+	
+	void readDestinationsFile(const string fileName);
+	void writeDestinationsFile(const string fileName);
+	const Destination inputDestination();
 };
 

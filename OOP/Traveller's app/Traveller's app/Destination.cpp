@@ -1,72 +1,44 @@
 #include "Destination.h"
 #include <iostream>
 
-Destination::Destination(const char* name, int grade, const char* comment, Date start, Date end) :
-	name(new char[strlen(name) + 1]),
+using string = std::string;
+Destination::Destination(const string name, int grade, const string comment, Date start, Date end) :
+	name(name),
 	grade(grade),
-	comment(new char[strlen(comment) + 1]),
+	comment(comment),
 	start(start),
 	end(end)
-{
-	strcpy(this->name, name);
-	strcpy(this->comment, comment);
-}
+{}
 
-Destination::Destination(Destination& other)
+Destination::Destination(const Destination & other)
 {
 	copy(other);
 }
 
-Destination& Destination::operator=(Destination& other)
+Destination& Destination::operator=(const Destination& other)
 {
-	if (this != &other) {
-		clear();
+	if (&other != this) {
 		copy(other);
 	}
+
 	return *this;
 }
 
-Destination::~Destination()
+void Destination::addImage(const string imageName)
 {
-	clear();
+	images.push_back(imageName);
 }
 
-/*void Destination::addImage(const char* imageName)
+void Destination::copy(const Destination& other)
 {
-	images[imagesCount] = new char[strlen(imageName) + 1];
-	strcpy(images[imagesCount], imageName);
-	imagesCount++;
-}*/
-
-void Destination::clear()
-{
-	delete[] name;
-	delete[] comment;
-	/*for (int i = 0; i < imagesCount; i++)
-	{
-		delete[] images[i];
-	}
-	delete[] images;*/
-
-	name = nullptr;
-	comment = nullptr;
-}
-
-void Destination::copy(Destination& other)
-{
-	name = new char[strlen(other.name)];
-	strcpy(name, other.name);
-
+	name = other.name;
 	grade = other.grade;
-
-	comment = new char[strlen(other.comment)];
-	strcpy(comment, other.comment);
-
+	comment = other.comment;
 	start = other.start;
 	end = other.end;
-
-	Images = other.Images;
+	images = other.images;
 }
+
 
 std::ostream& operator<<(std::ostream& out, Destination obj)
 {
