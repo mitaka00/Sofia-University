@@ -26,7 +26,7 @@ Destination& Destination::operator=(const Destination& other)
 
 void Destination::serialize(std::ofstream& out) const
 {
-	//TODO 
+	//TODO serialize destination
 }
 
 void Destination::addImage(const string imageName)
