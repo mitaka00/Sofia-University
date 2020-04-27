@@ -24,6 +24,11 @@ Destination& Destination::operator=(const Destination& other)
 	return *this;
 }
 
+void Destination::serialize(std::ofstream& out) const
+{
+	//TODO 
+}
+
 void Destination::addImage(const string imageName)
 {
 	images.push_back(imageName);
@@ -38,7 +43,6 @@ void Destination::copy(const Destination& other)
 	end = other.end;
 	images = other.images;
 }
-
 
 std::ostream& operator<<(std::ostream& out, Destination obj)
 {

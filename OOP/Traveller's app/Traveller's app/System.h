@@ -15,8 +15,9 @@ public:
 	~System();
 
 	void printHelp() const;
-	void addFriend(const char* name);
+	void addFriend(const string name);
 	void addDestination();
+	bool checkImageName(const string name);
 
 	void run();
 
@@ -24,14 +25,14 @@ private:
 	System();
 
 	User currentUser;
-	std::vector<User> users;
-	std::vector<std::string> destinations;
+	std::vector<User> users;				//All users
+	std::vector<std::string> destinations;	//All destinations
 	bool logged;
 
 	void start();
 	
-	void readUsersFile(const char* fileName);
-	void writeUsersFile(const char* fileName) const;	
+	void readUsersFile(const string fileName);
+	void writeUsersFile(const string fileName) const;	
 	bool loginUser();
 	bool registerUser();
 	

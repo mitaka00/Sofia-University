@@ -43,7 +43,7 @@ void System::start()
 		}
 		else if (strcmp(input, "login") == 0) {
 			if (!loginUser()) {
-				std::cout << "This username or password is incorrect used. Please try again. register/login" << std::endl;
+				std::cout << "This username or password is incorrect. Please try again. register/login" << std::endl;
 				continue;
 			}
 
@@ -58,7 +58,7 @@ void System::start()
 }
 
 //Read all users from Database
-void System::readUsersFile(const char* fileName)
+void System::readUsersFile(const string fileName)
 {
 	std::ifstream in(fileName, std::ios::binary);
 	if (!in) {
@@ -79,7 +79,7 @@ void System::readUsersFile(const char* fileName)
 }
 
 //Save all users in Database
-void System::writeUsersFile(const char* fileName) const
+void System::writeUsersFile(const string fileName) const
 {
 	std::ofstream out(fileName, std::ios::binary);
 	if (!out) {
@@ -143,9 +143,7 @@ void System::writeDestinationsFile(const string fileName)
 //Register user in Database
 bool System::registerUser()
 {
-	char username[MAX_INPUT_LEN];
-	char password[MAX_INPUT_LEN];
-	char email[MAX_INPUT_LEN];
+	string username, password, email;
 
 	std::cout << "Username: ";
 	std::cin >> username;
@@ -156,7 +154,8 @@ bool System::registerUser()
 
 	for (int i = 0; i < users.size(); i++)
 	{
-		if ((strcmp(username, users[i].getUsername()) == 0) || (strcmp(email, users[i].getEmail()) == 0)) {
+
+		if (username==users[i].getUsername() || email==users[i].getEmail()) {
 			return false;
 		}
 	}
@@ -176,8 +175,7 @@ bool System::registerUser()
 //Login user
 bool System::loginUser()
 {
-	char username[MAX_INPUT_LEN];
-	char password[MAX_INPUT_LEN];
+	string username, password;
 
 	std::cout << "Username: ";
 	std::cin >> username;
@@ -186,7 +184,7 @@ bool System::loginUser()
 
 	for (int i = 0; i < users.size(); i++)
 	{
-		if ((strcmp(username, users[i].getUsername()) == 0) && (strcmp(password, users[i].getPassword()) == 0)) {
+		if (username.compare(users[i].getUsername())==0 && password.compare(users[i].getPassword()) == 0) {
 			currentUser = users[i];
 			currentUser.readFriends();
 
@@ -226,7 +224,7 @@ void System::run()
 			addDestination();
 		}
 		else if (strcmp(input, "addFriend") == 0) {
-			char friendName[MAX_CMD_LEN];
+			string friendName;
 			std::cin >> friendName;
 			addFriend(friendName);
 		}
@@ -251,13 +249,13 @@ void System::run()
 }
 
 //Add friend to your friend list
-void System::addFriend(const char* friendName)
+void System::addFriend(const string friendName)
 {
 	bool isTrue = false;
 	int length = users.size();
 	for (int i = 0; i < length; i++)
 	{
-		if (strcmp(users[i].getUsername(), friendName) == 0 && strcmp(friendName, currentUser.getUsername()) != 0) {
+		if (users[i].getUsername()==friendName && friendName!=currentUser.getUsername()) {
 			isTrue = true;
 			break;
 		}
@@ -277,25 +275,72 @@ void System::addDestination()
 	Destination currentDestination = inputDestination();
 
 	//Check is current destination already created
-	bool isCreated = false;
+	bool isReady = false;
 	for (int i = 0; i < destinations.size(); i++)
 	{
 		if (destinations[i] == currentDestination.getName()) {
-			isCreated = true;
+			isReady = true;
 			break;
 		}
 	}
-	if (!isCreated) {
+	if (!isReady) {
 		destinations.push_back(currentDestination.getName());
 		writeDestinationsFile("destinations.db");
 	}
 	
-	std::cout << "Destinations is created. Do you want to add images: (yes/no):";
+	std::cout << "Destinations is created.";
+
+	//Add images to the current destination
+	isReady = false;
+	string command,input;
+	do {
+		std::cout<<"Do you want to add image: (yes/no):";
+		std::cin >> command;
+		if (command=="no") {
+			isReady = true;
+		}
+		else if(command=="yes") {
+			std::cout << "File name:";
+			std::cin >> input;
+			if (checkImageName(input)) {
+				currentDestination.addImage(input);
+				std::cout << "File added to your destination info\n";
+			}
+			else {
+				std::cout << "Invalid file name\n";
+			}
+		}
+	} while (!isReady);
+	
+
+	currentUser.addDestination(currentDestination);
+
 	/*
 	TODO...
-	ADD IMAGES
 	ADD TO USER PRIVATE DB
 	*/
+}
+
+bool System::checkImageName(const string name)
+{
+	string token = name;
+	int length = token.length();
+	for (int i = 0; i < length; i++)
+	{
+		if (token[i] == '.') {
+			string extenstion = token.substr(i);
+			if (extenstion == ".jpeg" || extenstion == ".png") {
+				return true;
+			}
+			return false;
+		}
+		
+		if (!((name[i] >= 'a' && name[i] <= 'z') || (name[i] >= 'A' && name[i] <= 'Z') || name[i] == '_')) {
+			return false;
+		}
+	}
+
+	return false;
 }
 
 //Add destination to your Database
@@ -348,6 +393,7 @@ const Destination System::inputDestination()
 	
 	//Enter comment
 	std::cout << "Enter comment:";
+	std::cin.ignore();
 	std::getline(std::cin, comment);
 
 	Destination currentDestination(destName, grade, comment, startDate, endDate);

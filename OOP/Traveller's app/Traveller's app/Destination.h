@@ -14,6 +14,7 @@ public:
 	Destination(const Destination& other);
 	Destination& operator=(const Destination& other);
 
+	void serialize(std::ofstream& out)const;
 	void addImage(const string imageName);
 
 	const string getName() const  { return name; };
