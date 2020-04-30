@@ -46,7 +46,7 @@ void Destination::serialize(std::ofstream& out) const
 	{
 		int currentLen = images[i].length();
 		out.write((const char*)&currentLen, sizeof(currentLen));
-		out.write((const char*)&images[i], currentLen);
+		out.write((const char*)&images[i][0], currentLen);
 	}
 }
 
@@ -73,7 +73,7 @@ void Destination::deserialize(std::ifstream& in)
 		int currentLen;
 		in.read((char*)&currentLen, sizeof(currentLen));
 		images[i].resize(currentLen);
-		in.read((char*)&images[i], currentLen);
+		in.read((char*)&images[i][0], currentLen);
 	}
 }
 

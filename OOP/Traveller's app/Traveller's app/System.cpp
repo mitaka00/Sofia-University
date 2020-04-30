@@ -132,7 +132,7 @@ void System::writeDestinationsFile(const string fileName)
 
 		for (int i = 0; i < size; i++)
 		{
-			int currentLength = destinations[i].length() + 1;
+			int currentLength = destinations[i].length();
 			out.write((const char*)&currentLength, sizeof(currentLength));
 			out.write((const char*)&destinations[i][0], currentLength);
 		}
@@ -233,7 +233,7 @@ void System::run()
 			addFriend(friendName);
 		}
 		else if (input=="friends") {
-			currentUser.showFriends();
+			currentUser.showFriendsInfo();
 		}
 		else if (input=="help") {
 			printHelp();
@@ -262,7 +262,7 @@ void System::addFriend(const string friendName)
 	int length = users.size();
 	for (int i = 0; i < length; i++)
 	{
-		if (users[i].getUsername()==friendName && friendName!=currentUser.getUsername()) {
+		if (users[i].getUsername()==friendName && friendName!=currentUser.getUsername() && !currentUser.includeFriend(friendName)) {
 			isTrue = true;
 			break;
 		}
@@ -273,7 +273,7 @@ void System::addFriend(const string friendName)
 		std::cout << friendName << " added to your friend list" << std::endl;
 	}
 	else {
-		std::cout << "No user with this name" << std::endl;
+		std::cout << "No user with this name or you have already added it" << std::endl;
 	}
 }
 

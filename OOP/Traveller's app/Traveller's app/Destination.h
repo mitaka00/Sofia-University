@@ -19,6 +19,7 @@ public:
 	void addImage(const string imageName);
 
 	inline string getName() const  { return name; };
+	inline string getComment() const { return comment; };
 
 	friend std::ostream& operator<<(std::ostream& out, Destination obj);
 private:
