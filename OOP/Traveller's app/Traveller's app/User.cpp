@@ -83,7 +83,7 @@ void User::writeFriends() const
 	out.write((const char*)&len, sizeof(len));
 	for (int i = 0; i < len; i++)
 	{
-		int currentLength = friends[i].length() + 1;
+		int currentLength = friends[i].length();
 		out.write((const char*)&currentLength, sizeof(currentLength));
 		out.write((const char*)&friends[i][0], currentLength);
 	}
@@ -111,7 +111,7 @@ void User::addDestination(const Destination& currentDestination)
 	destinations.push_back(currentDestination);
 }
 
-void User::serializeDestinations() const
+void User::writeDestinations() const
 {
 	string token = username;
 	std::ofstream out(token + ".db", std::ios::binary);
@@ -127,6 +127,39 @@ void User::serializeDestinations() const
 	}
 
 	out.close();
+}
+
+void User::readDestinations()
+{
+	string token = username;
+	std::ifstream in(token + ".db", std::ios::binary);
+	if (!in) {
+		std::cout << "Error";
+	}
+
+	int len;
+	in.read((char*)&len, sizeof(len));
+	destinations.resize(len);
+	for (int i = 0; i < len; i++)
+	{
+		destinations[i].deserialize(in);
+	}
+
+	in.close();
+}
+
+void User::showDestinations() const
+{
+	int len = destinations.size();
+	if (len == 0) {
+		std::cout << "No added destionations\n";
+	}
+	else {
+		for (int i = 0; i < len; i++)
+		{
+			std::cout << destinations[i] << std::endl;
+		}
+	}
 }
 
 void User::copy(const User& other)

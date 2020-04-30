@@ -161,7 +161,8 @@ bool System::registerUser()
 	}
 
 	currentUser = User(username, password, email);
-	currentUser.writeFriends();
+	currentUser.writeFriends(); //Make empty userFriends.db
+	currentUser.writeDestinations(); //Make empty user.db
 	users.push_back(currentUser);
 
 	//write in users file
@@ -187,6 +188,7 @@ bool System::loginUser()
 		if (username.compare(users[i].getUsername())==0 && password.compare(users[i].getPassword()) == 0) {
 			currentUser = users[i];
 			currentUser.readFriends();
+			currentUser.readDestinations();
 
 			return true;
 		}
@@ -200,12 +202,14 @@ void System::printHelp() const
 {
 	std::cout << " - List of commands - " << std::endl
 		<< "\taddDestination - add destination to your destinations." << std::endl
-		<< "\tfriends - shows all your friends." << std::endl
+		<< "\tfriends - shows all your friends info." << std::endl
 		<< "\taddFriend <name> - add friend with that name" << std::endl
+		<< "\tshowDestinations - shows info about your added destinations." << std::endl
 		<< "\thelp - shows info about the commands." << std::endl
 		<< "\tbye - terminates the program." << std::endl;
 }
 
+//End of the program
 System::~System()
 {
 	std::cout << "Have a nice day!" << std::endl;
@@ -216,25 +220,28 @@ void System::run()
 {
 	printHelp();
 
-	char input[MAX_CMD_LEN];
+	string input;
 
 	for (;;) {
 		std::cin >> input;
-		if (strcmp(input, "addDestination") == 0) {
+		if (input=="addDestination") {
 			addDestination();
 		}
-		else if (strcmp(input, "addFriend") == 0) {
+		else if (input=="addFriend") {
 			string friendName;
 			std::cin >> friendName;
 			addFriend(friendName);
 		}
-		else if (strcmp(input, "friends") == 0) {
+		else if (input=="friends") {
 			currentUser.showFriends();
 		}
-		else if (strcmp(input, "help") == 0) {
+		else if (input=="help") {
 			printHelp();
 		}
-		else if (strcmp(input, "bye") == 0) {
+		else if (input=="showDestinations") {
+			currentUser.showDestinations();
+		}
+		else if (input=="bye") {
 			break;
 		}
 		else {
@@ -270,8 +277,10 @@ void System::addFriend(const string friendName)
 	}
 }
 
+//Add destionation to your Database
 void System::addDestination()
 {
+	//Input info from destination
 	Destination currentDestination = inputDestination();
 
 	//Check is current destination already created
@@ -312,15 +321,12 @@ void System::addDestination()
 		}
 	} while (!isReady);
 	
-
+	//User destinations Database
 	currentUser.addDestination(currentDestination);
-
-	/*
-	TODO...
-	ADD TO USER PRIVATE DB
-	*/
+	currentUser.writeDestinations();
 }
 
+//Validation for image name
 bool System::checkImageName(const string name)
 {
 	string token = name;

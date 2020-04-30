@@ -44,6 +44,20 @@ bool Date::operator<=(const Date& other) const
 	}
 }
 
+void Date::serialize(std::ofstream& out) const
+{
+	out.write((const char*)&year, sizeof(year));
+	out.write((const char*)&month, sizeof(month));
+	out.write((const char*)&day, sizeof(day));
+}
+
+void Date::deserialize(std::ifstream& in)
+{
+	in.read((char*)&year, sizeof(year));
+	in.read((char*)&month, sizeof(month));
+	in.read((char*)&day, sizeof(day));
+}
+
 std::ostream& operator<<(std::ostream& out, Date& obj)
 {
 	out << obj.getYear() << "-" << obj.getMonth() << "-" << obj.getDay();

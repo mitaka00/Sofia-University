@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <fstream>
 class Date
 {
 public:
@@ -7,7 +8,11 @@ public:
 	Date& operator=(const Date& other);
 
 	bool operator<=(const Date& other)const;
+	void serialize(std::ofstream& out) const;
+	void deserialize(std::ifstream& in);
 	bool isTrueDate()const;
+
+
 
 	void setYear(int year) { this->year = year; };
 	void setMonth(int month) { this->month = month; };

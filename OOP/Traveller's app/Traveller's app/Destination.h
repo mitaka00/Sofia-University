@@ -15,10 +15,12 @@ public:
 	Destination& operator=(const Destination& other);
 
 	void serialize(std::ofstream& out)const;
+	void deserialize(std::ifstream& in);
 	void addImage(const string imageName);
 
-	const string getName() const  { return name; };
+	inline string getName() const  { return name; };
 
+	friend std::ostream& operator<<(std::ostream& out, Destination obj);
 private:
 	string name;
 	int grade;
@@ -31,5 +33,5 @@ private:
 	void copy(const Destination& other);
 };
 
-std::ostream& operator<<(std::ostream& out,Destination obj);
+
 

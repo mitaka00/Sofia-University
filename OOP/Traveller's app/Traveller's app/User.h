@@ -20,11 +20,13 @@ public:
 	void showFriends() const;
 
 	void addDestination(const Destination& currentDestination);
-	void serializeDestinations() const;
+	void writeDestinations() const;
+	void readDestinations();
+	void showDestinations() const;
 
-	inline  string getUsername() const { return username; };
-	inline  string getEmail() const { return email; };
-	inline  string getPassword() const { return password; };
+	inline string getUsername() const { return username; };
+	inline string getEmail() const { return email; };
+	inline string getPassword() const { return password; };
 
 private:
 	string username;
