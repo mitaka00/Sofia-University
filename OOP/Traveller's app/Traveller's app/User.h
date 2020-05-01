@@ -9,9 +9,7 @@ class User
 {
 public:
 	User(const string username="", const string password="", const string email="");
-	//User(const User& other);
 	User(std::ifstream& in);
-	//User& operator=(const User& other);
 	void serialize(std::ofstream& out) const;
 
 	void readFriends();
@@ -36,7 +34,6 @@ private:
 	std::vector<std::string> friends;
 	std::vector<Destination> destinations;
 
-	//void copy(const User& other);
 	void writeParam(const string param, std::ofstream& out) const;
 };
 

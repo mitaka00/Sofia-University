@@ -44,6 +44,7 @@ bool Date::operator<=(const Date& other) const
 	}
 }
 
+//Write date in file
 void Date::serialize(std::ofstream& out) const
 {
 	out.write((const char*)&year, sizeof(year));
@@ -51,6 +52,7 @@ void Date::serialize(std::ofstream& out) const
 	out.write((const char*)&day, sizeof(day));
 }
 
+//Read date from file
 void Date::deserialize(std::ifstream& in)
 {
 	in.read((char*)&year, sizeof(year));
@@ -58,12 +60,25 @@ void Date::deserialize(std::ifstream& in)
 	in.read((char*)&day, sizeof(day));
 }
 
+//Print date on console
 std::ostream& operator<<(std::ostream& out, Date& obj)
 {
-	out << obj.getYear() << "-" << obj.getMonth() << "-" << obj.getDay();
+	if (obj.getMonth() < 10 && obj.getDay()<10) {
+		out << obj.getYear() << "-0" << obj.getMonth() << "-0" << obj.getDay();
+	}
+	else if (obj.getMonth() < 10) {
+		out << obj.getYear() << "-0" << obj.getMonth() << "-" << obj.getDay();
+	}
+	else if (obj.getDay() < 10) {
+		out << obj.getYear() << "-" << obj.getMonth() << "-0" << obj.getDay();
+	}
+	else {
+		out << obj.getYear() << "-" << obj.getMonth() << "-" << obj.getDay();
+	}
 	return out;
 }
 
+//Read date from console
 std::istream& operator>>(std::istream& in, Date& obj)
 {
 	char input[MAXN_LENGTH];
@@ -96,6 +111,7 @@ std::istream& operator>>(std::istream& in, Date& obj)
 	return in;
 }
 
+//Date validation
 bool Date::isTrueDate() const
 {
 	if (day <= 0 || day>31 || year <= 0 || year>CURRENT_YEAR || month <= 0 || month>12) {

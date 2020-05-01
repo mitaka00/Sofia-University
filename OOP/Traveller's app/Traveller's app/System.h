@@ -18,6 +18,7 @@ public:
 	void addFriend(const string name);
 	void addDestination();
 	bool checkImageName(const string name);
+	void searchDestination(const string destinationName);
 
 	void run();
 
@@ -39,5 +40,6 @@ private:
 	void readDestinationsFile(const string fileName);
 	void writeDestinationsFile(const string fileName);
 	const Destination inputDestination();
+	double calculateAverageGrade(const string destinationName);
 };
 

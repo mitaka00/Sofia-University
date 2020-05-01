@@ -11,8 +11,6 @@ class Destination
 {
 public:
 	Destination(const string name = "", int grade = 1, const string comment = "", Date start = Date(), Date end = Date());
-	Destination(const Destination& other);
-	Destination& operator=(const Destination& other);
 
 	void serialize(std::ofstream& out)const;
 	void deserialize(std::ifstream& in);
@@ -20,6 +18,7 @@ public:
 
 	inline string getName() const  { return name; };
 	inline string getComment() const { return comment; };
+	const inline int getGrade() const { return grade; };
 
 	friend std::ostream& operator<<(std::ostream& out, Destination obj);
 private:
@@ -30,8 +29,6 @@ private:
 	Date end;
 
 	std::vector<string>images;
-	
-	void copy(const Destination& other);
 };
 
 

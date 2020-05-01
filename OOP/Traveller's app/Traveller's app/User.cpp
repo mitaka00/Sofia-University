@@ -10,11 +10,6 @@ User::User(const string username, const string password, const string email):
 	email(email)
 {}
 
-/*User::User(const User& other)
-{
-	copy(other);
-}*/
-
 User::User(std::ifstream& in)
 {
 	int len;
@@ -31,15 +26,6 @@ User::User(std::ifstream& in)
 	in.read((char*)&email[0], len);
 }
 
-/*User& User::operator=(const User& other)
-{
-	if (this != &other) {
-		copy(other);
-	}
-
-	return *this;
-}*/
-
 void User::serialize(std::ofstream& out) const
 {
 	writeParam(username, out);
@@ -47,6 +33,7 @@ void User::serialize(std::ofstream& out) const
 	writeParam(email, out);
 }
 
+//Read user's friends from file
 void User::readFriends()
 {
 	string token = username;
@@ -70,6 +57,7 @@ void User::readFriends()
 	in.close();
 }
 
+//Write user's friends in file
 void User::writeFriends() const
 {
 	string token = username;
@@ -91,11 +79,13 @@ void User::writeFriends() const
 	out.close();
 }
 
+//Add friend
 void User::addFriend(const string friendUser)
 {
 	friends.push_back(friendUser);
 }
 
+//Print friends destinations and comments
 void User::showFriendsInfo() const
 {
 	int length = friends.size();
@@ -131,6 +121,7 @@ void User::showFriendsInfo() const
 	}
 }
 
+//Check is name in friends array
 bool User::includeFriend(const string name) const
 {
 	int length = friends.size();
@@ -143,11 +134,13 @@ bool User::includeFriend(const string name) const
 	return false;
 }
 
+//Add destination
 void User::addDestination(const Destination& currentDestination)
 {
 	destinations.push_back(currentDestination);
 }
 
+//Write user's destinations in file
 void User::writeDestinations() const
 {
 	string token = username;
@@ -166,6 +159,7 @@ void User::writeDestinations() const
 	out.close();
 }
 
+//Read user's destinations from file
 void User::readDestinations()
 {
 	string token = username;
@@ -185,6 +179,7 @@ void User::readDestinations()
 	in.close();
 }
 
+//Print user's destinations
 void User::showDestinations() const
 {
 	int len = destinations.size();
@@ -199,15 +194,7 @@ void User::showDestinations() const
 	}
 }
 
-/*void User::copy(const User& other)
-{
-	username = other.username;
-	password = other.password;
-	email = other.email;
-	friends = other.friends;
-	destinations = other.destinations;
-}*/
-
+//Helper function (write param in file)
 void User::writeParam(const string param, std::ofstream& out) const
 {
 	int len = param.length();

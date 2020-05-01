@@ -205,6 +205,7 @@ void System::printHelp() const
 		<< "\tfriends - shows all your friends info." << std::endl
 		<< "\taddFriend <name> - add friend with that name" << std::endl
 		<< "\tshowDestinations - shows info about your added destinations." << std::endl
+		<< "\tsearch <destination name> - shows grades for this destination and average grade." << std::endl
 		<< "\thelp - shows info about the commands." << std::endl
 		<< "\tbye - terminates the program." << std::endl;
 }
@@ -241,6 +242,12 @@ void System::run()
 		else if (input=="showDestinations") {
 			currentUser.showDestinations();
 		}
+		else if (input == "search") {
+			string destinationName;
+			std::cin.ignore();
+			std::getline(std::cin, destinationName);
+			searchDestination(destinationName);
+		}
 		else if (input=="bye") {
 			break;
 		}
@@ -248,11 +255,6 @@ void System::run()
 			std::cout << "Unknown command! Type 'help' for available commands." << std::endl;
 		}
 	}
-	/*
-	TODO...
-	LIST FRIENDS DESTINATIONS AND COMMENTS
-	LIST DESTINATION'S GRADES AND AVERAGE GRADE
-	*/
 }
 
 //Add friend to your friend list
@@ -349,6 +351,26 @@ bool System::checkImageName(const string name)
 	return false;
 }
 
+//Show grades for destination
+void System::searchDestination(const string destinationName)
+{
+	int size = destinations.size();
+	bool isCreated = false;
+	for (int i = 0; i < size; i++)
+	{
+		if (destinationName == destinations[i]) {
+			isCreated = true;
+		}
+	}
+	if (!isCreated) {
+		std::cout << "No created destinations with that name\n";
+	}
+	else {
+		double averageGrade = calculateAverageGrade(destinationName);
+		std::cout << "Average grade:" << averageGrade <<std::endl;
+	}
+}
+
 //Add destination to your Database
 const Destination System::inputDestination()
 {
@@ -404,4 +426,44 @@ const Destination System::inputDestination()
 
 	Destination currentDestination(destName, grade, comment, startDate, endDate);
 	return currentDestination;
+}
+
+//Calculate average grade for destination
+double System::calculateAverageGrade(const string destinationName)
+{
+	double counter = 0;
+	double sum = 0;
+
+	int size = users.size();
+	for (int i = 0; i < size; i++)
+	{
+		//Read current user destinations
+		std::vector<Destination> currentDestinations;
+		std::ifstream in(users[i].getUsername() + ".db", std::ios::binary);
+		if (!in) {
+			std::cout << "Error";
+		}
+
+		int len;
+		in.read((char*)&len, sizeof(len));
+		currentDestinations.resize(len);
+		for (int i = 0; i < len; i++)
+		{
+			currentDestinations[i].deserialize(in);
+		}
+
+		in.close();
+
+		//Check destinations
+		for (int j = 0; j < len; j++)
+		{
+			if (currentDestinations[j].getName() == destinationName) {
+				std::cout << users[i].getUsername() << "-> grade:" << currentDestinations[j].getGrade() << std::endl;
+				counter++;
+				sum += currentDestinations[j].getGrade();
+			}
+		}
+	}
+
+	return sum / counter;
 }

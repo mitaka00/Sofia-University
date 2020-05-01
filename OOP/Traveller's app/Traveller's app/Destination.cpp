@@ -11,20 +11,7 @@ Destination::Destination(const string name, int grade, const string comment, Dat
 	end(end)
 {}
 
-Destination::Destination(const Destination & other)
-{
-	copy(other);
-}
-
-Destination& Destination::operator=(const Destination& other)
-{
-	if (&other != this) {
-		copy(other);
-	}
-
-	return *this;
-}
-
+//Write destination in file
 void Destination::serialize(std::ofstream& out) const
 {
 	int len = name.length();
@@ -50,6 +37,7 @@ void Destination::serialize(std::ofstream& out) const
 	}
 }
 
+//Read destination from file
 void Destination::deserialize(std::ifstream& in)
 {
 	int len;
@@ -77,21 +65,13 @@ void Destination::deserialize(std::ifstream& in)
 	}
 }
 
+//Add image
 void Destination::addImage(const string imageName)
 {
 	images.push_back(imageName);
 }
 
-void Destination::copy(const Destination& other)
-{
-	name = other.name;
-	grade = other.grade;
-	comment = other.comment;
-	start = other.start;
-	end = other.end;
-	images = other.images;
-}
-
+//Print destination on console
 std::ostream& operator<<(std::ostream& out, Destination obj)
 {
 	std::cout << "Name:" << obj.name << std::endl;;
@@ -102,10 +82,14 @@ std::ostream& operator<<(std::ostream& out, Destination obj)
 
 	std::cout << "Images: " << std::endl;
 	int len = obj.images.size();
-	for (int i = 0; i < len; i++)
-	{
-		std::cout << obj.images[i] << std::endl;
+	if (len == 0) {
+		std::cout << "No images";
 	}
-
+	else {
+		for (int i = 0; i < len; i++)
+		{
+			std::cout << obj.images[i] << std::endl;
+		}
+	}
 	return out;
 }
