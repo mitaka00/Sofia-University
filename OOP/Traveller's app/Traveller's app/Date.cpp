@@ -61,7 +61,7 @@ void Date::deserialize(std::ifstream& in)
 }
 
 //Print date on console
-std::ostream& operator<<(std::ostream& out, Date& obj)
+std::ostream& operator<<(std::ostream& out,const Date& obj)
 {
 	if (obj.getMonth() < 10 && obj.getDay()<10) {
 		out << obj.getYear() << "-0" << obj.getMonth() << "-0" << obj.getDay();
@@ -79,7 +79,7 @@ std::ostream& operator<<(std::ostream& out, Date& obj)
 }
 
 //Read date from console
-std::istream& operator>>(std::istream& in, Date& obj)
+std::istream& operator>>(std::istream& in,Date& obj)
 {
 	char input[MAXN_LENGTH];
 	in >> input;

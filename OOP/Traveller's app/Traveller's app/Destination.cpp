@@ -2,8 +2,8 @@
 #include <iostream>
 #include <fstream>
 
-using string = std::string;
-Destination::Destination(const string name, int grade, const string comment, Date start, Date end) :
+using std::string;
+Destination::Destination(const string& name, int grade, const string& comment, Date start, Date end) :
 	name(name),
 	grade(grade),
 	comment(comment),
@@ -66,13 +66,13 @@ void Destination::deserialize(std::ifstream& in)
 }
 
 //Add image
-void Destination::addImage(const string imageName)
+void Destination::addImage(const string& imageName)
 {
 	images.push_back(imageName);
 }
 
 //Print destination on console
-std::ostream& operator<<(std::ostream& out, Destination obj)
+std::ostream& operator<<(std::ostream& out,const Destination& obj)
 {
 	std::cout << "Name:" << obj.name << std::endl;;
 	std::cout << "Grade:" << obj.grade << std::endl;

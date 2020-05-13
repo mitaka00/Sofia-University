@@ -27,6 +27,6 @@ private:
 	int day;
 };
 
-std::ostream& operator<<(std::ostream& out, Date& obj);
-std::istream& operator>>(std::istream& in, Date& obj);
+std::ostream& operator<<(std::ostream& out,const Date& obj);
+std::istream& operator>>(std::istream& in,Date& obj);
 

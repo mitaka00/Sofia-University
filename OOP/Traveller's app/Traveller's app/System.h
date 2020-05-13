@@ -15,10 +15,10 @@ public:
 	~System();
 
 	void printHelp() const;
-	void addFriend(const string name);
+	void addFriend(const string& name);
 	void addDestination();
-	bool checkImageName(const string name);
-	void searchDestination(const string destinationName);
+	bool checkImageName(const string& name);
+	void searchDestination(const string& destinationName);
 
 	void run();
 
@@ -32,14 +32,14 @@ private:
 
 	void start();
 	
-	void readUsersFile(const string fileName);
-	void writeUsersFile(const string fileName) const;	
+	void readUsersFile(const string& fileName);
+	void writeUsersFile(const string& fileName) const;	
 	bool loginUser();
 	bool registerUser();
 	
-	void readDestinationsFile(const string fileName);
-	void writeDestinationsFile(const string fileName);
-	const Destination inputDestination();
-	double calculateAverageGrade(const string destinationName);
+	void readDestinationsFile(const string& fileName);
+	void writeDestinationsFile(const string& fileName);
+	Destination inputDestination();
+	double calculateAverageGrade(const string& destinationName);
 };
 

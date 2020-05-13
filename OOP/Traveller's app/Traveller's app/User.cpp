@@ -4,7 +4,7 @@
 
 const int MAX_TOKEN_LENGTH = 30;
 
-User::User(const string username, const string password, const string email):
+User::User(const string& username, const string& password, const string& email):
 	username(username),
 	password(password),
 	email(email)
@@ -80,7 +80,7 @@ void User::writeFriends() const
 }
 
 //Add friend
-void User::addFriend(const string friendUser)
+void User::addFriend(const string& friendUser)
 {
 	friends.push_back(friendUser);
 }
@@ -122,7 +122,7 @@ void User::showFriendsInfo() const
 }
 
 //Check is name in friends array
-bool User::includeFriend(const string name) const
+bool User::includeFriend(const string& name) const
 {
 	int length = friends.size();
 	for (int i = 0; i < length; i++)
@@ -195,7 +195,7 @@ void User::showDestinations() const
 }
 
 //Helper function (write param in file)
-void User::writeParam(const string param, std::ofstream& out) const
+void User::writeParam(const string& param, std::ofstream& out) const
 {
 	int len = param.length();
 

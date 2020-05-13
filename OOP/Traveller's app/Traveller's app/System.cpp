@@ -4,7 +4,7 @@
 #include "System.h"
 #include "Date.h"
 
-using string = std::string;
+using std::string;
 const int MAX_CMD_LEN = 15;
 const int MAX_INPUT_LEN = 128;
 
@@ -58,7 +58,7 @@ void System::start()
 }
 
 //Read all users from Database
-void System::readUsersFile(const string fileName)
+void System::readUsersFile(const string& fileName)
 {
 	std::ifstream in(fileName, std::ios::binary);
 	if (!in) {
@@ -79,7 +79,7 @@ void System::readUsersFile(const string fileName)
 }
 
 //Save all users in Database
-void System::writeUsersFile(const string fileName) const
+void System::writeUsersFile(const string& fileName) const
 {
 	std::ofstream out(fileName, std::ios::binary);
 	if (!out) {
@@ -97,7 +97,7 @@ void System::writeUsersFile(const string fileName) const
 }
 
 //Read all destinations in Database
-void System::readDestinationsFile(const string fileName)
+void System::readDestinationsFile(const string& fileName)
 {
 	std::ifstream in(fileName, std::ios::binary);
 	if (!in) {
@@ -120,7 +120,7 @@ void System::readDestinationsFile(const string fileName)
 }
 
 //Save all destinations in Database
-void System::writeDestinationsFile(const string fileName)
+void System::writeDestinationsFile(const string& fileName)
 {
 	std::ofstream out(fileName, std::ios::binary);
 	if (!out) {
@@ -258,7 +258,7 @@ void System::run()
 }
 
 //Add friend to your friend list
-void System::addFriend(const string friendName)
+void System::addFriend(const string& friendName)
 {
 	bool isTrue = false;
 	int length = users.size();
@@ -329,7 +329,7 @@ void System::addDestination()
 }
 
 //Validation for image name
-bool System::checkImageName(const string name)
+bool System::checkImageName(const string& name)
 {
 	string token = name;
 	int length = token.length();
@@ -352,7 +352,7 @@ bool System::checkImageName(const string name)
 }
 
 //Show grades for destination
-void System::searchDestination(const string destinationName)
+void System::searchDestination(const string& destinationName)
 {
 	int size = destinations.size();
 	bool isCreated = false;
@@ -372,7 +372,7 @@ void System::searchDestination(const string destinationName)
 }
 
 //Add destination to your Database
-const Destination System::inputDestination()
+Destination System::inputDestination()
 {
 	string destName;
 	int grade;
@@ -429,7 +429,7 @@ const Destination System::inputDestination()
 }
 
 //Calculate average grade for destination
-double System::calculateAverageGrade(const string destinationName)
+double System::calculateAverageGrade(const string& destinationName)
 {
 	double counter = 0;
 	double sum = 0;
