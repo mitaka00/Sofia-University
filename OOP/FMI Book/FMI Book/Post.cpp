@@ -1,6 +1,9 @@
 #include "Post.h"
 #include<string>
 
+unsigned Post::currID = 0;
+
+
 unsigned Post::getID()
 {
 	return currID++;

@@ -10,6 +10,6 @@ public:
 protected:
 	int width;
 	int height;
-	std::string formatText;
+	char encoding;
 };
 

@@ -1,12 +1,13 @@
 #include <iostream>
+#include <fstream>
 #include <cstring>
-#include <stdio.h> 
-#include <string.h> 
 #include "System.h"
 #include "Session.h"
 
-const int MAX_CMD_LEN = 1024;
-const int MAX_INPUT_LEN = 128;
+using std::string;
+using std::cin;
+using std::cout;
+using std::endl;
 
 System::System()
 {
@@ -37,19 +38,18 @@ System::~System()
 void System::run()
 {
 	printHelp();
-
-	char command[MAX_CMD_LEN];
+	string command;
 
 	for (;;) {
 		std::cin >> command;
-		if (strcmp(command, "load") == 0) {
+		if (command=="load") {
 			Session currentSession=Session();
 			readImages(currentSession);
 		}
-		else if (strcmp(command, "help") == 0) {
+		else if (command=="help") {
 			printHelp();
 		}
-		else if (strcmp(command, "exit") == 0) {
+		else if (command=="exit") {
 			break;
 		}
 		else {
@@ -61,20 +61,16 @@ void System::run()
 
 void System::readImages(Session& currentSession)
 {
-	char input[MAX_CMD_LEN];
-	std::cin.getline(input, MAX_CMD_LEN);
-	char* token;
-	char* rest = input;
-	while ((token = strtok_s(rest, " ", &rest))) {
-
-		Image currentImage(token);
-		if (currentImage.getFormat() == -1) {
-			std::cout << currentImage.getName() << " has incorrect format!\n";
-		}
-		else {
-			currentSession.addImage(currentImage);
-			std::cout << currentImage.getName() << " added to the session\n";
-		}		
+	string input;
+	std::cin.ignore();
+	std::getline(cin, input);
+	
+	std::ifstream in(input);
+	if (!in) {
+		std::cout << "errorr\n";
 	}
-
+	else {
+		Image currentImage(input);
+	}
+	in.close();
 }
