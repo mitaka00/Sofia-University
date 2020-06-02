@@ -12,8 +12,6 @@ public:
 	void deserialize(std::ifstream& in);
 	bool isTrueDate()const;
 
-
-
 	void setYear(int year) { this->year = year; };
 	void setMonth(int month) { this->month = month; };
 	void setDay(int day) { this->day = day; };
