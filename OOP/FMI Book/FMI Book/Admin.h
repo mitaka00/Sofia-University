@@ -5,6 +5,7 @@ class Admin:public Moderator
 {
 public:
 	Admin(const std::string& username = "", int age = 1);
+	virtual ~Admin() = default;
 protected:
 };
 

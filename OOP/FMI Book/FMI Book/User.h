@@ -9,7 +9,7 @@ class User
 	using string = std::string;
 public:
 	User(const string& username = "", int age = 1);
-	~User();
+	virtual ~User();
 
 	void rename(const string& newName);
 	void addPost(Post* currentPost);
