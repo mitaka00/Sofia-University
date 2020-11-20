@@ -64,22 +64,24 @@ void System::run()
 	std::list<request>::iterator secondIt = requests.begin();
 	bool isPrintedFirst = false;
 	bool isPrintedSecond = false;
+	bool goNextSecond = false;
+
+	//Work with all requests
 	while (!requests.empty()) {
 		secondIt = firstIt;
 		secondIt++;
 
-		/*if (!isPrintedFirst && firstElevator.checkToOpen()) {
+		if (!isPrintedFirst && firstElevator.checkToOpen()) {
 			std::cout << "S " << currentSeconds << " " << firstElevator.getCurrentFloor() << " " << firstElevator.getPrevDir() << std::endl;
 			firstElevator.removePeople();
-
 			isPrintedFirst = true;
 		}
 		if (!isPrintedSecond && secondElevator.checkToOpen()) {
 			std::cout << "L " << currentSeconds << " " << secondElevator.getCurrentFloor() << " " << secondElevator.getPrevDir() << std::endl;
 			secondElevator.removePeople();
-
 			isPrintedSecond = true;
-		}*/
+		}
+
 		
 		if ((*firstIt).name == "call" && (*firstIt).time <= currentSeconds) {
 			if (!(*firstIt).done) {
@@ -104,12 +106,13 @@ void System::run()
 				if (firstElevator.push((*firstIt).floor)) {
 					if (secondIt != requests.end()) {
 						firstIt = requests.erase(prevIt, secondIt);
+						secondIt = firstIt;
 					}
 					else {
 						requests.pop_back();
 						requests.pop_back();
+						secondIt = requests.end();
 					}
-					secondIt = firstIt;
 				}
 				else {
 					(*prevIt).done = false;
@@ -119,12 +122,13 @@ void System::run()
 				if (secondElevator.push((*firstIt).floor)) {
 					if (secondIt != requests.end()) {
 						firstIt = requests.erase(prevIt, secondIt);
+						secondIt = firstIt;
 					}
 					else {
 						requests.pop_back();
 						requests.pop_back();
+						secondIt = requests.end();
 					}
-					secondIt = firstIt;
 				}
 				else {
 					(*prevIt).done = false;
@@ -132,37 +136,13 @@ void System::run()
 			}
 		}
 		else {
-			isPrintedFirst = false;
-			isPrintedSecond = false;
-			firstElevator.removeCurrentFloorFromStops();
-			secondElevator.removeCurrentFloorFromStops();
-
-			firstElevator.makeStep(0.2);
-			secondElevator.makeStep(0.2);
-			currentSeconds++;
-
-			if (firstElevator.checkToOpen()) {
-				std::cout << "S " << currentSeconds << " " << firstElevator.getCurrentFloor() << " " << firstElevator.getPrevDir() << std::endl;
-				firstElevator.removePeople();
-			}
-			if (secondElevator.checkToOpen()) {
-				std::cout << "L " << currentSeconds << " " << secondElevator.getCurrentFloor() << " " << secondElevator.getPrevDir() << std::endl;
-				secondElevator.removePeople();
-			}
-			firstIt = requests.begin();
-			secondIt = requests.begin();
+			goNextSecond = true;
 		}
 
-		
-		if (secondIt != requests.end()) {
+		if (secondIt != requests.end() && !goNextSecond) {
 			firstIt = secondIt;
 		}
 		else {
-			firstIt = requests.begin();
-			
-			isPrintedFirst = false;
-			isPrintedSecond = false;
-
 			firstElevator.removeCurrentFloorFromStops();
 			secondElevator.removeCurrentFloorFromStops();
 
@@ -170,24 +150,20 @@ void System::run()
 			secondElevator.makeStep(0.2);
 			currentSeconds++;
 
-			if (firstElevator.checkToOpen()) {
-				std::cout << "S " << currentSeconds << " " << firstElevator.getCurrentFloor() << " " << firstElevator.getPrevDir() << std::endl;
-				firstElevator.removePeople();
-			}
-			if (secondElevator.checkToOpen()) {
-				std::cout << "L " << currentSeconds << " " << secondElevator.getCurrentFloor() << " " << secondElevator.getPrevDir() << std::endl;
-				secondElevator.removePeople();
-			}
-		}
-		
+			isPrintedFirst = false;
+			isPrintedSecond = false;
+			goNextSecond = false;
+
+			firstIt = requests.begin();
+		}	
 	}
 
+	//All requests all removed
 	while (!firstElevator.isFinished() || !secondElevator.isFinished()) {
 		if (firstElevator.checkToOpen()) {
 			std::cout << "S " << currentSeconds << " " << firstElevator.getCurrentFloor() << " " << firstElevator.getPrevDir() << std::endl;
 			firstElevator.removeCurrentFloorFromStops();
 			firstElevator.removePeople();
-			
 		}
 		if (secondElevator.checkToOpen()) {
 			std::cout << "L " << currentSeconds << " " << secondElevator.getCurrentFloor() << " " << secondElevator.getPrevDir() << std::endl;

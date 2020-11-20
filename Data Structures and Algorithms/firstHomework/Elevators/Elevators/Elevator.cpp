@@ -15,7 +15,8 @@ bool Elevator::push(const double& floor)
 		return false;
 	}
 	
-	if ((floor > currentFloor && dir == "down" && !abs(targetFloor-currentFloor)<eps) || (floor < currentFloor && dir == "up" && !abs(targetFloor - currentFloor) < eps)) {
+	if ((floor > currentFloor && dir == "down" && !(abs(targetFloor-currentFloor)<eps)) 
+		|| (floor < currentFloor && dir == "up" && !(abs(targetFloor - currentFloor) < eps))) {
 		return false;
 	}
 	people.push_front(floor);
@@ -30,7 +31,7 @@ bool Elevator::push(const double& floor)
 	return true;
 }
 
-void Elevator::pushCall(const int floor,const std::string& currentDir)
+void Elevator::pushCall(const int& floor,const std::string& currentDir)
 {
 	if (!contain(floor)) {
 		stops.push_front(floor);
@@ -99,7 +100,7 @@ void Elevator::removeCurrentFloorFromStops()
 	}
 }
 
-void Elevator::makeStep(const double step)
+void Elevator::makeStep(const double& step)
 {
 	prevDir = dir;
 	if (dir == "up") {
@@ -120,7 +121,7 @@ void Elevator::makeStep(const double step)
 	}
 }
 
-bool Elevator::checkToOpen()
+bool Elevator::checkToOpen ()
 {
 	if (contain(currentFloor)) {
 		return true;
@@ -129,7 +130,7 @@ bool Elevator::checkToOpen()
 	return false;
 }
 
-double Elevator::distanceBetweenFloor(const std::string& inputDir, const int inputFloor)
+double Elevator::distanceBetweenFloor(const std::string& inputDir, const int& inputFloor) const
 {
 	if (dir == "") {
 		return abs(inputFloor - currentFloor);
@@ -145,7 +146,7 @@ double Elevator::distanceBetweenFloor(const std::string& inputDir, const int inp
 	
 	return -1;
 }
-bool Elevator::contain(const double& floor)
+bool Elevator::contain (const double& floor)
 {
 	if (stops.empty()) {
 		return false;

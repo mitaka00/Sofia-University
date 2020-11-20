@@ -33,8 +33,6 @@ private:
 	Elevator firstElevator, secondElevator;
 	std::list<request> requests;
 
-	
-
 	bool readFile();
 };
 

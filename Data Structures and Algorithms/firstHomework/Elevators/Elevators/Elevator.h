@@ -10,25 +10,25 @@ class Elevator
 public:
 	Elevator();
 	bool push(const double& floor);
-	void pushCall(const int floor,const std::string& currentDir);
+	void pushCall(const int& floor,const std::string& currentDir);
 	void removeCurrentFloorFromStops();
 	void removePeople();
-	void makeStep(const double step);
+	void makeStep(const double& step);
 
 	bool checkToOpen();
-	bool contain(const double& floor);
+	bool contain (const double& floor);
 	bool isFull() const { return peopleCount == capacity; };
 	bool isEmpty() const { return people.empty(); };
 	bool isFinished() const { return stops.empty(); };
 
-	double distanceBetweenFloor(const std::string& inputDir,const int inputFloor);
+	double distanceBetweenFloor(const std::string& inputDir,const int& inputFloor) const;
 
-	void setCapacity(const int capacity) { this->capacity = capacity; };
-	void setMaxFloor(const int maxFloor) { this->maxFloor = maxFloor; };
+	void setCapacity(const int& capacity) { this->capacity = capacity; };
+	void setMaxFloor(const int& maxFloor) { this->maxFloor = maxFloor; };
 	void setDir(const std::string& dir) { this->dir = dir; };
 
 	const double getCurrentFloor() const { return currentFloor; };
-	const std::string getPrevDir() const { return prevDir; };
+	const std::string& getPrevDir() const { return prevDir; };
 private:
 	std::string dir, prevDir;
 	double currentFloor,maxFloor;
