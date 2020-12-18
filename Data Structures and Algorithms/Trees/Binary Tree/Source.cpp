@@ -8,7 +8,7 @@ struct Node {
 };
 
 int main() {
-	//todo...
+	//todo....
 	
 	return 0;
 }
