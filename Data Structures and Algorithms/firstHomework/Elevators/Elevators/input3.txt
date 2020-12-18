@@ -1,0 +1,21 @@
+10 1 4 10
+call DOWN 8 0
+go 7 0
+call DOWN 7 0
+go 6 0
+call DOWN 5 0
+go 1 0
+call DOWN 9 0
+go 5 0
+call DOWN 5 0
+go 2 0
+call UP 6 0
+go 8 0
+call DOWN 10 0
+go 7 0
+call UP 2 1
+go 10 1
+call UP 2 2
+go 10 2
+call DOWN 10 2
+go 3 2

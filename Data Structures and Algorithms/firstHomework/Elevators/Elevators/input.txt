@@ -1,0 +1,2001 @@
+33 1 2 2000
+call UP 30 0
+go 32 0
+call UP 25 0
+go 33 0
+call UP 12 0
+go 20 0
+call UP 2 0
+go 11 0
+call UP 16 0
+go 25 0
+call DOWN 27 0
+go 26 0
+call DOWN 32 1
+go 11 1
+call DOWN 32 1
+go 18 1
+call UP 23 2
+go 24 2
+call DOWN 26 2
+go 5 2
+call DOWN 28 2
+go 5 2
+call UP 9 2
+go 26 2
+call UP 6 2
+go 8 2
+call UP 12 2
+go 28 2
+call DOWN 7 2
+go 1 2
+call UP 6 3
+go 32 3
+call UP 3 3
+go 25 3
+call DOWN 20 3
+go 16 3
+call UP 5 3
+go 30 3
+call UP 7 3
+go 27 3
+call UP 9 3
+go 32 3
+call DOWN 9 3
+go 7 3
+call DOWN 17 4
+go 14 4
+call UP 10 5
+go 32 5
+call UP 8 5
+go 27 5
+call UP 5 5
+go 18 5
+call DOWN 28 5
+go 20 5
+call DOWN 22 5
+go 11 5
+call DOWN 32 5
+go 10 5
+call DOWN 8 5
+go 2 5
+call DOWN 19 6
+go 10 6
+call DOWN 18 6
+go 5 6
+call DOWN 30 6
+go 12 6
+call DOWN 22 7
+go 19 7
+call UP 11 7
+go 25 7
+call DOWN 20 8
+go 11 8
+call UP 1 9
+go 19 9
+call DOWN 16 9
+go 15 9
+call UP 6 9
+go 11 9
+call UP 10 9
+go 24 9
+call DOWN 24 10
+go 18 10
+call UP 4 11
+go 10 11
+call DOWN 31 12
+go 27 12
+call UP 15 12
+go 24 12
+call DOWN 26 12
+go 2 12
+call UP 11 12
+go 28 12
+call DOWN 27 12
+go 13 12
+call DOWN 33 12
+go 5 12
+call UP 15 12
+go 33 12
+call DOWN 17 13
+go 11 13
+call DOWN 10 14
+go 2 14
+call DOWN 26 14
+go 1 14
+call UP 7 14
+go 11 14
+call UP 3 15
+go 23 15
+call UP 11 15
+go 21 15
+call DOWN 9 15
+go 7 15
+call DOWN 29 15
+go 6 15
+call DOWN 24 16
+go 1 16
+call DOWN 24 16
+go 22 16
+call UP 14 16
+go 33 16
+call UP 16 17
+go 17 17
+call UP 2 18
+go 33 18
+call UP 8 18
+go 12 18
+call UP 6 18
+go 10 18
+call DOWN 32 19
+go 7 19
+call UP 24 19
+go 32 19
+call UP 2 19
+go 27 19
+call DOWN 30 19
+go 25 19
+call UP 10 19
+go 14 19
+call DOWN 24 20
+go 13 20
+call UP 13 20
+go 23 20
+call DOWN 16 21
+go 12 21
+call DOWN 33 22
+go 9 22
+call UP 20 22
+go 28 22
+call DOWN 6 23
+go 4 23
+call UP 15 24
+go 18 24
+call UP 10 24
+go 23 24
+call UP 19 25
+go 30 25
+call DOWN 17 25
+go 1 25
+call DOWN 22 25
+go 2 25
+call DOWN 28 25
+go 27 25
+call DOWN 25 25
+go 14 25
+call DOWN 33 25
+go 2 25
+call UP 10 25
+go 26 25
+call UP 17 25
+go 19 25
+call UP 9 25
+go 28 25
+call DOWN 21 25
+go 19 25
+call UP 17 25
+go 23 25
+call DOWN 21 25
+go 16 25
+call DOWN 28 26
+go 15 26
+call DOWN 25 26
+go 4 26
+call UP 19 27
+go 26 27
+call DOWN 22 27
+go 2 27
+call UP 3 28
+go 33 28
+call UP 1 28
+go 13 28
+call DOWN 14 28
+go 6 28
+call DOWN 26 29
+go 2 29
+call UP 31 29
+go 33 29
+call UP 3 29
+go 21 29
+call DOWN 29 29
+go 17 29
+call DOWN 18 29
+go 2 29
+call DOWN 15 29
+go 7 29
+call DOWN 21 29
+go 9 29
+call UP 10 29
+go 27 29
+call UP 3 29
+go 23 29
+call DOWN 23 29
+go 20 29
+call DOWN 25 30
+go 20 30
+call UP 22 30
+go 23 30
+call DOWN 16 30
+go 2 30
+call UP 4 30
+go 16 30
+call DOWN 31 30
+go 26 30
+call DOWN 31 30
+go 3 30
+call DOWN 18 31
+go 14 31
+call UP 17 31
+go 22 31
+call DOWN 5 31
+go 3 31
+call DOWN 23 31
+go 19 31
+call DOWN 14 31
+go 13 31
+call UP 16 31
+go 31 31
+call DOWN 15 32
+go 11 32
+call UP 16 32
+go 30 32
+call DOWN 22 32
+go 8 32
+call DOWN 30 32
+go 10 32
+call DOWN 23 32
+go 6 32
+call UP 17 32
+go 20 32
+call UP 4 32
+go 32 32
+call DOWN 17 32
+go 4 32
+call UP 20 32
+go 32 32
+call DOWN 12 32
+go 1 32
+call UP 14 32
+go 33 32
+call DOWN 19 32
+go 17 32
+call UP 1 33
+go 26 33
+call UP 13 34
+go 22 34
+call UP 2 35
+go 5 35
+call DOWN 32 36
+go 8 36
+call DOWN 20 36
+go 4 36
+call DOWN 33 36
+go 1 36
+call DOWN 19 36
+go 16 36
+call UP 5 37
+go 14 37
+call UP 2 37
+go 28 37
+call UP 12 37
+go 31 37
+call DOWN 23 37
+go 5 37
+call UP 9 38
+go 31 38
+call UP 21 38
+go 33 38
+call UP 3 38
+go 29 38
+call DOWN 18 38
+go 1 38
+call UP 15 39
+go 27 39
+call UP 3 39
+go 25 39
+call UP 8 39
+go 15 39
+call DOWN 20 39
+go 13 39
+call DOWN 31 39
+go 30 39
+call DOWN 27 40
+go 1 40
+call DOWN 25 41
+go 12 41
+call DOWN 15 41
+go 13 41
+call UP 5 41
+go 31 41
+call DOWN 12 41
+go 4 41
+call DOWN 28 41
+go 8 41
+call DOWN 14 41
+go 4 41
+call UP 3 42
+go 18 42
+call DOWN 23 42
+go 2 42
+call DOWN 29 42
+go 18 42
+call DOWN 29 43
+go 7 43
+call UP 3 44
+go 22 44
+call DOWN 32 45
+go 10 45
+call UP 14 45
+go 27 45
+call UP 15 46
+go 22 46
+call UP 9 46
+go 26 46
+call DOWN 30 46
+go 11 46
+call UP 19 46
+go 30 46
+call UP 3 46
+go 17 46
+call UP 21 46
+go 24 46
+call UP 1 46
+go 8 46
+call UP 4 46
+go 18 46
+call DOWN 32 46
+go 27 46
+call DOWN 27 46
+go 19 46
+call UP 10 46
+go 30 46
+call DOWN 18 46
+go 6 46
+call DOWN 16 46
+go 12 46
+call DOWN 23 47
+go 22 47
+call UP 4 47
+go 29 47
+call DOWN 25 47
+go 23 47
+call UP 27 48
+go 29 48
+call DOWN 33 48
+go 11 48
+call DOWN 18 48
+go 5 48
+call DOWN 7 48
+go 3 48
+call DOWN 24 49
+go 15 49
+call UP 7 49
+go 29 49
+call UP 14 49
+go 17 49
+call UP 11 49
+go 16 49
+call UP 4 49
+go 26 49
+call DOWN 31 49
+go 20 49
+call DOWN 7 50
+go 3 50
+call UP 26 50
+go 31 50
+call DOWN 30 50
+go 18 50
+call UP 26 51
+go 30 51
+call UP 28 51
+go 32 51
+call UP 8 51
+go 29 51
+call UP 9 51
+go 13 51
+call UP 19 51
+go 20 51
+call UP 10 52
+go 25 52
+call DOWN 24 52
+go 7 52
+call DOWN 11 52
+go 1 52
+call DOWN 27 53
+go 2 53
+call UP 3 54
+go 11 54
+call DOWN 21 54
+go 5 54
+call DOWN 32 54
+go 12 54
+call DOWN 22 54
+go 20 54
+call DOWN 17 54
+go 6 54
+call UP 3 55
+go 4 55
+call UP 10 55
+go 30 55
+call DOWN 27 55
+go 16 55
+call UP 23 56
+go 25 56
+call DOWN 30 56
+go 3 56
+call UP 6 56
+go 16 56
+call DOWN 24 56
+go 14 56
+call UP 24 56
+go 29 56
+call UP 8 57
+go 33 57
+call DOWN 23 57
+go 5 57
+call UP 29 57
+go 31 57
+call UP 1 57
+go 5 57
+call DOWN 18 58
+go 17 58
+call DOWN 11 58
+go 1 58
+call UP 6 58
+go 17 58
+call DOWN 30 59
+go 21 59
+call UP 24 59
+go 26 59
+call UP 2 59
+go 17 59
+call DOWN 33 60
+go 28 60
+call UP 26 60
+go 27 60
+call DOWN 23 60
+go 12 60
+call UP 16 60
+go 27 60
+call DOWN 14 61
+go 2 61
+call UP 21 61
+go 31 61
+call UP 2 62
+go 21 62
+call UP 23 63
+go 29 63
+call DOWN 20 63
+go 8 63
+call DOWN 30 63
+go 18 63
+call UP 21 64
+go 33 64
+call DOWN 27 64
+go 25 64
+call DOWN 31 65
+go 22 65
+call UP 15 65
+go 17 65
+call UP 4 65
+go 29 65
+call DOWN 28 66
+go 4 66
+call DOWN 27 66
+go 2 66
+call UP 22 66
+go 30 66
+call UP 4 66
+go 28 66
+call UP 9 66
+go 27 66
+call DOWN 29 66
+go 27 66
+call DOWN 10 66
+go 3 66
+call UP 5 66
+go 11 66
+call DOWN 22 66
+go 18 66
+call UP 12 66
+go 23 66
+call UP 15 66
+go 25 66
+call UP 15 66
+go 18 66
+call DOWN 21 66
+go 12 66
+call DOWN 32 67
+go 11 67
+call DOWN 30 67
+go 17 67
+call DOWN 25 67
+go 17 67
+call UP 2 67
+go 28 67
+call DOWN 15 68
+go 6 68
+call UP 9 69
+go 32 69
+call DOWN 22 69
+go 14 69
+call UP 9 69
+go 23 69
+call DOWN 20 70
+go 16 70
+call UP 12 70
+go 13 70
+call DOWN 31 71
+go 2 71
+call UP 16 71
+go 18 71
+call DOWN 25 72
+go 17 72
+call UP 16 72
+go 19 72
+call DOWN 16 72
+go 9 72
+call DOWN 31 72
+go 17 72
+call UP 7 72
+go 23 72
+call UP 17 72
+go 19 72
+call UP 24 73
+go 26 73
+call UP 18 74
+go 26 74
+call UP 23 74
+go 27 74
+call DOWN 23 74
+go 4 74
+call UP 2 74
+go 14 74
+call DOWN 31 74
+go 18 74
+call DOWN 12 75
+go 6 75
+call UP 18 76
+go 20 76
+call UP 5 77
+go 23 77
+call UP 1 77
+go 31 77
+call DOWN 20 77
+go 8 77
+call UP 5 78
+go 15 78
+call UP 5 79
+go 17 79
+call DOWN 32 79
+go 11 79
+call UP 16 80
+go 25 80
+call DOWN 32 80
+go 23 80
+call UP 1 80
+go 19 80
+call DOWN 12 80
+go 5 80
+call DOWN 22 81
+go 12 81
+call UP 23 81
+go 29 81
+call UP 9 81
+go 20 81
+call UP 2 81
+go 29 81
+call UP 2 82
+go 20 82
+call DOWN 29 83
+go 14 83
+call DOWN 15 83
+go 4 83
+call DOWN 18 83
+go 17 83
+call DOWN 31 83
+go 26 83
+call UP 12 83
+go 14 83
+call DOWN 24 83
+go 7 83
+call DOWN 23 83
+go 12 83
+call DOWN 27 83
+go 2 83
+call UP 20 83
+go 30 83
+call UP 6 84
+go 12 84
+call DOWN 28 84
+go 21 84
+call UP 14 85
+go 30 85
+call UP 21 85
+go 33 85
+call UP 29 85
+go 33 85
+call UP 29 85
+go 33 85
+call UP 11 85
+go 29 85
+call DOWN 31 86
+go 22 86
+call UP 2 87
+go 18 87
+call UP 5 87
+go 30 87
+call UP 23 87
+go 24 87
+call DOWN 28 88
+go 16 88
+call DOWN 27 88
+go 26 88
+call UP 3 89
+go 32 89
+call DOWN 23 89
+go 22 89
+call UP 26 89
+go 27 89
+call DOWN 13 89
+go 8 89
+call UP 5 89
+go 28 89
+call UP 11 89
+go 27 89
+call DOWN 23 90
+go 8 90
+call DOWN 20 91
+go 15 91
+call UP 5 91
+go 24 91
+call UP 1 91
+go 25 91
+call DOWN 28 91
+go 19 91
+call DOWN 22 91
+go 5 91
+call DOWN 8 91
+go 7 91
+call UP 2 92
+go 27 92
+call DOWN 21 92
+go 13 92
+call UP 2 92
+go 4 92
+call UP 12 92
+go 20 92
+call UP 17 92
+go 21 92
+call DOWN 28 92
+go 21 92
+call UP 17 93
+go 22 93
+call DOWN 26 93
+go 10 93
+call UP 11 93
+go 12 93
+call UP 28 93
+go 31 93
+call UP 16 94
+go 28 94
+call DOWN 28 94
+go 11 94
+call DOWN 22 94
+go 13 94
+call DOWN 23 94
+go 7 94
+call UP 5 94
+go 30 94
+call UP 6 95
+go 19 95
+call DOWN 30 96
+go 16 96
+call DOWN 21 96
+go 16 96
+call UP 8 96
+go 20 96
+call UP 24 96
+go 32 96
+call UP 2 96
+go 33 96
+call UP 13 96
+go 31 96
+call UP 9 97
+go 33 97
+call DOWN 22 98
+go 9 98
+call UP 5 99
+go 11 99
+call UP 5 100
+go 12 100
+call UP 16 100
+go 19 100
+call DOWN 25 100
+go 13 100
+call UP 6 101
+go 19 101
+call UP 1 101
+go 18 101
+call DOWN 15 101
+go 13 101
+call UP 2 101
+go 6 101
+call UP 12 101
+go 23 101
+call UP 19 101
+go 23 101
+call UP 25 102
+go 27 102
+call UP 16 102
+go 27 102
+call DOWN 24 102
+go 2 102
+call DOWN 33 102
+go 8 102
+call DOWN 20 102
+go 8 102
+call UP 15 102
+go 32 102
+call DOWN 12 103
+go 8 103
+call UP 4 103
+go 18 103
+call DOWN 24 103
+go 20 103
+call DOWN 25 103
+go 9 103
+call UP 10 103
+go 19 103
+call DOWN 14 103
+go 9 103
+call DOWN 18 103
+go 7 103
+call DOWN 21 104
+go 1 104
+call DOWN 11 104
+go 6 104
+call DOWN 17 105
+go 3 105
+call UP 4 105
+go 19 105
+call UP 7 105
+go 26 105
+call UP 7 105
+go 32 105
+call UP 1 106
+go 10 106
+call UP 13 106
+go 33 106
+call UP 26 106
+go 30 106
+call DOWN 30 106
+go 19 106
+call DOWN 31 106
+go 29 106
+call UP 4 106
+go 32 106
+call DOWN 22 106
+go 9 106
+call UP 17 106
+go 24 106
+call DOWN 9 106
+go 8 106
+call UP 27 106
+go 29 106
+call UP 14 106
+go 23 106
+call UP 1 107
+go 16 107
+call UP 16 107
+go 26 107
+call DOWN 30 107
+go 5 107
+call DOWN 20 107
+go 19 107
+call DOWN 5 107
+go 3 107
+call DOWN 18 107
+go 12 107
+call UP 12 107
+go 27 107
+call UP 14 107
+go 17 107
+call UP 9 108
+go 18 108
+call UP 26 108
+go 29 108
+call DOWN 26 108
+go 6 108
+call UP 2 109
+go 29 109
+call DOWN 27 109
+go 12 109
+call UP 4 110
+go 5 110
+call DOWN 12 110
+go 1 110
+call DOWN 17 110
+go 2 110
+call DOWN 27 110
+go 12 110
+call DOWN 11 110
+go 3 110
+call UP 13 110
+go 17 110
+call UP 12 110
+go 20 110
+call DOWN 24 111
+go 10 111
+call UP 12 111
+go 23 111
+call UP 12 111
+go 27 111
+call DOWN 30 111
+go 1 111
+call DOWN 25 111
+go 11 111
+call UP 10 111
+go 14 111
+call DOWN 33 111
+go 14 111
+call DOWN 16 111
+go 3 111
+call UP 16 111
+go 23 111
+call UP 13 111
+go 18 111
+call DOWN 22 111
+go 7 111
+call DOWN 20 111
+go 2 111
+call DOWN 10 111
+go 1 111
+call UP 3 111
+go 17 111
+call UP 3 111
+go 13 111
+call UP 24 111
+go 26 111
+call UP 12 111
+go 31 111
+call DOWN 22 111
+go 15 111
+call DOWN 32 111
+go 31 111
+call UP 5 111
+go 13 111
+call DOWN 27 111
+go 3 111
+call UP 8 111
+go 23 111
+call UP 11 111
+go 24 111
+call DOWN 29 111
+go 25 111
+call UP 16 111
+go 25 111
+call DOWN 28 111
+go 20 111
+call DOWN 30 111
+go 17 111
+call DOWN 19 111
+go 8 111
+call DOWN 7 112
+go 1 112
+call UP 4 112
+go 6 112
+call DOWN 30 112
+go 12 112
+call UP 3 112
+go 27 112
+call UP 23 112
+go 27 112
+call UP 5 113
+go 30 113
+call UP 8 114
+go 21 114
+call DOWN 12 115
+go 6 115
+call UP 17 115
+go 24 115
+call DOWN 19 115
+go 3 115
+call UP 10 116
+go 32 116
+call DOWN 29 117
+go 9 117
+call DOWN 30 117
+go 6 117
+call UP 6 117
+go 24 117
+call UP 5 117
+go 19 117
+call UP 15 117
+go 28 117
+call UP 5 117
+go 7 117
+call DOWN 32 117
+go 23 117
+call UP 20 118
+go 22 118
+call UP 8 118
+go 27 118
+call DOWN 24 118
+go 20 118
+call UP 8 118
+go 18 118
+call UP 5 118
+go 18 118
+call UP 9 118
+go 14 118
+call DOWN 26 118
+go 24 118
+call UP 5 119
+go 20 119
+call DOWN 19 119
+go 3 119
+call UP 10 119
+go 21 119
+call DOWN 27 119
+go 20 119
+call UP 2 119
+go 8 119
+call UP 25 119
+go 32 119
+call UP 12 119
+go 33 119
+call DOWN 15 120
+go 13 120
+call DOWN 12 121
+go 10 121
+call DOWN 24 122
+go 5 122
+call DOWN 30 123
+go 18 123
+call UP 8 123
+go 12 123
+call DOWN 23 124
+go 13 124
+call DOWN 24 124
+go 5 124
+call UP 32 124
+go 33 124
+call UP 1 125
+go 11 125
+call DOWN 9 125
+go 5 125
+call DOWN 23 125
+go 7 125
+call DOWN 5 125
+go 3 125
+call UP 13 126
+go 27 126
+call UP 4 127
+go 17 127
+call DOWN 28 127
+go 5 127
+call UP 16 127
+go 20 127
+call UP 19 128
+go 22 128
+call UP 14 128
+go 31 128
+call UP 5 128
+go 21 128
+call DOWN 33 128
+go 28 128
+call DOWN 28 128
+go 9 128
+call UP 5 128
+go 12 128
+call UP 13 128
+go 14 128
+call UP 11 128
+go 15 128
+call UP 10 128
+go 28 128
+call UP 2 128
+go 21 128
+call DOWN 24 129
+go 19 129
+call DOWN 20 129
+go 8 129
+call UP 16 130
+go 17 130
+call UP 18 131
+go 29 131
+call DOWN 7 131
+go 6 131
+call DOWN 15 132
+go 11 132
+call DOWN 19 132
+go 5 132
+call UP 13 133
+go 25 133
+call UP 24 134
+go 27 134
+call UP 10 134
+go 12 134
+call DOWN 31 134
+go 3 134
+call UP 12 134
+go 27 134
+call DOWN 12 134
+go 3 134
+call UP 14 134
+go 28 134
+call UP 2 134
+go 31 134
+call DOWN 22 135
+go 15 135
+call UP 4 135
+go 26 135
+call UP 6 135
+go 16 135
+call DOWN 9 135
+go 3 135
+call DOWN 14 136
+go 7 136
+call UP 9 137
+go 27 137
+call UP 27 137
+go 30 137
+call UP 12 137
+go 32 137
+call DOWN 32 137
+go 5 137
+call UP 11 137
+go 17 137
+call DOWN 24 137
+go 22 137
+call DOWN 16 137
+go 4 137
+call UP 9 137
+go 21 137
+call DOWN 27 137
+go 7 137
+call DOWN 22 138
+go 18 138
+call UP 23 139
+go 31 139
+call UP 20 140
+go 32 140
+call UP 11 140
+go 25 140
+call UP 1 140
+go 26 140
+call DOWN 32 141
+go 28 141
+call UP 2 142
+go 18 142
+call UP 8 142
+go 23 142
+call DOWN 29 142
+go 4 142
+call DOWN 31 142
+go 3 142
+call UP 3 142
+go 12 142
+call UP 8 142
+go 17 142
+call UP 10 142
+go 28 142
+call UP 19 142
+go 25 142
+call DOWN 32 142
+go 22 142
+call DOWN 8 142
+go 5 142
+call UP 23 142
+go 32 142
+call DOWN 16 142
+go 1 142
+call UP 10 143
+go 29 143
+call DOWN 27 143
+go 5 143
+call DOWN 32 144
+go 27 144
+call DOWN 24 144
+go 21 144
+call DOWN 12 145
+go 4 145
+call UP 28 145
+go 29 145
+call DOWN 32 145
+go 7 145
+call UP 5 146
+go 22 146
+call DOWN 25 147
+go 24 147
+call DOWN 18 147
+go 1 147
+call DOWN 29 147
+go 4 147
+call UP 4 147
+go 23 147
+call DOWN 30 147
+go 2 147
+call DOWN 26 147
+go 12 147
+call UP 2 147
+go 5 147
+call UP 19 147
+go 26 147
+call DOWN 23 147
+go 5 147
+call UP 3 148
+go 33 148
+call UP 23 149
+go 25 149
+call DOWN 20 149
+go 2 149
+call DOWN 15 149
+go 14 149
+call UP 7 150
+go 33 150
+call UP 13 150
+go 17 150
+call UP 12 151
+go 22 151
+call UP 20 151
+go 30 151
+call UP 16 151
+go 33 151
+call DOWN 18 151
+go 7 151
+call UP 8 151
+go 18 151
+call UP 5 152
+go 25 152
+call DOWN 29 153
+go 5 153
+call UP 5 153
+go 33 153
+call DOWN 22 153
+go 15 153
+call DOWN 32 153
+go 14 153
+call UP 18 154
+go 28 154
+call UP 4 154
+go 16 154
+call DOWN 18 154
+go 14 154
+call UP 2 154
+go 11 154
+call UP 24 154
+go 28 154
+call DOWN 22 154
+go 9 154
+call DOWN 29 154
+go 18 154
+call DOWN 18 154
+go 14 154
+call DOWN 31 154
+go 4 154
+call DOWN 19 155
+go 6 155
+call UP 13 156
+go 30 156
+call DOWN 25 157
+go 24 157
+call UP 1 157
+go 24 157
+call DOWN 12 157
+go 3 157
+call DOWN 26 158
+go 25 158
+call UP 20 158
+go 31 158
+call DOWN 25 158
+go 23 158
+call DOWN 33 158
+go 28 158
+call DOWN 18 158
+go 10 158
+call UP 8 159
+go 19 159
+call UP 23 160
+go 25 160
+call DOWN 11 160
+go 7 160
+call UP 9 160
+go 27 160
+call DOWN 30 160
+go 13 160
+call UP 11 160
+go 18 160
+call UP 16 161
+go 32 161
+call DOWN 15 161
+go 3 161
+call DOWN 22 161
+go 13 161
+call UP 15 162
+go 29 162
+call DOWN 33 162
+go 2 162
+call UP 3 162
+go 5 162
+call DOWN 19 162
+go 4 162
+call UP 3 162
+go 11 162
+call DOWN 28 162
+go 9 162
+call DOWN 17 162
+go 11 162
+call UP 14 162
+go 28 162
+call DOWN 29 162
+go 28 162
+call DOWN 25 162
+go 16 162
+call UP 24 162
+go 25 162
+call DOWN 10 162
+go 4 162
+call UP 29 162
+go 30 162
+call DOWN 33 162
+go 26 162
+call UP 21 162
+go 24 162
+call DOWN 20 162
+go 19 162
+call UP 2 162
+go 24 162
+call DOWN 10 163
+go 7 163
+call UP 24 163
+go 29 163
+call UP 15 163
+go 22 163
+call DOWN 29 164
+go 12 164
+call DOWN 29 164
+go 17 164
+call UP 4 164
+go 16 164
+call UP 20 164
+go 21 164
+call DOWN 21 164
+go 12 164
+call UP 23 165
+go 24 165
+call UP 1 165
+go 17 165
+call UP 5 166
+go 30 166
+call DOWN 27 166
+go 18 166
+call DOWN 31 167
+go 14 167
+call UP 14 167
+go 32 167
+call DOWN 18 167
+go 12 167
+call UP 19 168
+go 21 168
+call DOWN 32 168
+go 13 168
+call DOWN 28 168
+go 18 168
+call UP 4 169
+go 32 169
+call DOWN 25 170
+go 23 170
+call DOWN 32 170
+go 27 170
+call UP 4 170
+go 28 170
+call UP 3 171
+go 8 171
+call DOWN 33 171
+go 28 171
+call UP 1 171
+go 24 171
+call UP 8 172
+go 27 172
+call UP 20 172
+go 25 172
+call UP 17 173
+go 19 173
+call UP 15 174
+go 29 174
+call UP 11 174
+go 30 174
+call DOWN 32 174
+go 2 174
+call DOWN 20 175
+go 7 175
+call UP 5 176
+go 28 176
+call UP 3 176
+go 5 176
+call DOWN 14 176
+go 13 176
+call UP 20 177
+go 21 177
+call UP 9 178
+go 17 178
+call DOWN 14 178
+go 3 178
+call UP 10 178
+go 18 178
+call UP 1 179
+go 12 179
+call UP 1 179
+go 33 179
+call UP 10 179
+go 25 179
+call UP 12 179
+go 16 179
+call DOWN 25 179
+go 22 179
+call UP 19 179
+go 31 179
+call DOWN 21 180
+go 20 180
+call DOWN 19 180
+go 5 180
+call DOWN 29 181
+go 23 181
+call DOWN 32 182
+go 4 182
+call DOWN 22 182
+go 8 182
+call UP 7 182
+go 19 182
+call DOWN 30 182
+go 8 182
+call UP 23 182
+go 26 182
+call UP 4 183
+go 13 183
+call DOWN 22 184
+go 18 184
+call DOWN 28 185
+go 21 185
+call UP 29 185
+go 30 185
+call UP 19 186
+go 31 186
+call DOWN 26 186
+go 22 186
+call DOWN 30 186
+go 25 186
+call DOWN 24 186
+go 12 186
+call DOWN 31 186
+go 16 186
+call UP 16 186
+go 30 186
+call DOWN 27 186
+go 13 186
+call UP 15 187
+go 17 187
+call UP 6 188
+go 12 188
+call DOWN 24 189
+go 10 189
+call DOWN 14 190
+go 6 190
+call UP 8 191
+go 23 191
+call UP 12 191
+go 27 191
+call DOWN 29 192
+go 26 192
+call DOWN 9 193
+go 8 193
+call UP 7 193
+go 23 193
+call DOWN 25 194
+go 24 194
+call UP 5 194
+go 33 194
+call UP 14 195
+go 30 195
+call UP 22 195
+go 30 195
+call UP 18 195
+go 26 195
+call UP 12 195
+go 26 195
+call UP 1 196
+go 3 196
+call UP 13 196
+go 18 196
+call UP 10 197
+go 19 197
+call DOWN 12 197
+go 8 197
+call DOWN 16 197
+go 13 197
+call DOWN 20 198
+go 11 198
+call DOWN 21 198
+go 6 198
+call UP 4 198
+go 31 198
+call DOWN 27 199
+go 24 199
+call DOWN 23 199
+go 5 199
+call UP 7 199
+go 11 199
+call DOWN 33 200
+go 30 200
+call DOWN 30 201
+go 19 201
+call UP 2 201
+go 25 201
+call UP 15 202
+go 23 202
+call UP 4 202
+go 10 202
+call UP 12 202
+go 22 202
+call DOWN 24 203
+go 5 203
+call DOWN 19 203
+go 10 203
+call UP 19 204
+go 25 204
+call UP 4 204
+go 23 204
+call UP 5 204
+go 33 204
+call DOWN 31 204
+go 14 204
+call UP 4 204
+go 16 204
+call DOWN 24 205
+go 13 205
+call UP 7 206
+go 16 206
+call DOWN 27 207
+go 5 207
+call DOWN 14 207
+go 7 207
+call UP 12 208
+go 15 208
+call UP 8 208
+go 25 208
+call DOWN 19 209
+go 6 209
+call DOWN 24 210
+go 11 210
+call UP 4 211
+go 21 211
+call DOWN 29 211
+go 20 211
+call UP 2 211
+go 23 211
+call DOWN 19 212
+go 1 212
+call DOWN 25 212
+go 2 212
+call DOWN 19 212
+go 13 212
+call UP 2 212
+go 21 212
+call DOWN 10 212
+go 8 212
+call UP 11 213
+go 12 213
+call DOWN 18 213
+go 13 213
+call UP 19 213
+go 31 213
+call UP 8 213
+go 16 213
+call UP 3 213
+go 22 213
+call UP 2 213
+go 24 213
+call UP 17 213
+go 24 213
+call DOWN 29 214
+go 11 214
+call DOWN 20 214
+go 15 214
+call DOWN 15 215
+go 9 215
+call DOWN 20 215
+go 13 215
+call DOWN 22 215
+go 16 215
+call UP 16 216
+go 26 216
+call UP 5 216
+go 19 216
+call UP 20 216
+go 33 216
+call DOWN 30 217
+go 26 217
+call DOWN 17 218
+go 13 218
+call DOWN 24 218
+go 10 218
+call UP 19 219
+go 21 219
+call DOWN 16 219
+go 13 219
+call DOWN 19 219
+go 4 219
+call UP 12 219
+go 33 219
+call UP 9 220
+go 31 220
+call DOWN 13 221
+go 5 221
+call UP 11 222
+go 31 222
+call UP 20 223
+go 28 223
+call DOWN 23 223
+go 21 223
+call UP 9 223
+go 24 223
+call DOWN 28 223
+go 16 223
+call UP 3 223
+go 11 223
+call UP 6 223
+go 19 223
+call UP 12 223
+go 26 223
+call DOWN 31 223
+go 10 223
+call UP 3 223
+go 22 223
+call UP 8 223
+go 13 223
+call UP 4 223
+go 10 223
+call DOWN 12 224
+go 4 224
+call UP 9 224
+go 31 224
+call DOWN 30 224
+go 6 224
+call UP 5 225
+go 31 225
+call UP 9 225
+go 20 225
+call DOWN 31 226
+go 29 226
+call DOWN 27 227
+go 17 227
+call UP 14 228
+go 16 228
+call DOWN 14 228
+go 9 228
+call UP 2 229
+go 24 229
+call UP 4 229
+go 12 229
+call UP 10 229
+go 22 229
+call DOWN 23 230
+go 5 230
+call DOWN 4 231
+go 1 231
+call UP 26 232
+go 28 232
+call DOWN 29 232
+go 3 232
+call DOWN 32 232
+go 12 232
+call UP 15 233
+go 23 233
+call DOWN 28 233
+go 18 233
+call UP 6 233
+go 20 233
+call UP 22 233
+go 33 233
+call UP 9 233
+go 24 233
+call DOWN 27 233
+go 12 233
+call DOWN 26 234
+go 1 234
+call UP 25 235
+go 28 235
+call DOWN 20 235
+go 19 235
+call UP 1 236
+go 13 236
+call UP 20 236
+go 21 236
+call DOWN 19 237
+go 2 237
+call DOWN 28 237
+go 3 237
+call UP 11 238
+go 28 238
+call DOWN 29 238
+go 21 238
+call UP 24 239
+go 33 239
+call DOWN 31 239
+go 13 239
+call UP 6 239
+go 23 239
+call DOWN 16 240
+go 7 240
+call DOWN 20 241
+go 11 241
+call DOWN 31 242
+go 30 242
+call DOWN 14 242
+go 8 242
+call DOWN 11 242
+go 9 242
+call DOWN 32 243
+go 11 243
+call DOWN 33 243
+go 11 243
+call DOWN 23 244
+go 5 244
+call DOWN 27 244
+go 4 244
+call UP 9 245
+go 13 245
+call DOWN 10 246
+go 8 246
+call UP 23 246
+go 31 246
+call UP 18 247
+go 19 247
+call DOWN 19 248
+go 6 248
+call UP 4 248
+go 8 248
+call DOWN 26 248
+go 19 248
+call DOWN 11 248
+go 3 248
+call DOWN 25 248
+go 17 248
+call UP 4 248
+go 6 248
+call UP 11 248
+go 21 248
+call UP 9 248
+go 13 248
+call UP 4 248
+go 8 248
+call UP 5 248
+go 14 248
+call UP 3 248
+go 22 248
+call UP 12 248
+go 15 248
+call UP 1 248
+go 27 248
+call UP 13 248
+go 30 248
+call UP 8 249
+go 24 249
+call UP 11 249
+go 32 249
+call UP 10 250
+go 15 250
+call UP 24 250
+go 28 250
+call UP 18 250
+go 22 250
+call DOWN 9 250
+go 8 250
+call DOWN 4 251
+go 1 251
+call DOWN 32 252
+go 24 252
+call DOWN 10 252
+go 9 252
+call UP 3 252
+go 22 252
+call DOWN 29 252
+go 8 252
+call DOWN 28 253
+go 25 253
+call DOWN 13 253
+go 2 253
+call UP 29 254
+go 31 254
+call DOWN 24 254
+go 8 254
+call UP 7 255
+go 21 255
+call UP 1 255
+go 27 255
+call UP 25 256
+go 32 256
+call UP 2 257
+go 30 257
+call UP 4 257
+go 24 257
+call UP 1 257
+go 14 257
+call UP 29 257
+go 31 257
+call DOWN 26 258
+go 14 258
+call UP 12 258
+go 22 258
+call UP 14 258
+go 32 258
+call DOWN 27 258
+go 7 258
+call DOWN 28 259
+go 10 259
+call UP 5 259
+go 29 259
+call UP 1 259
+go 13 259
+call UP 11 259
+go 18 259
+call UP 15 260
+go 19 260
+call DOWN 15 261
+go 5 261
+call UP 11 261
+go 22 261
+call DOWN 30 261
+go 8 261
+call UP 20 261
+go 25 261
+call UP 9 261
+go 23 261
+call UP 8 261
+go 29 261
+call DOWN 29 261
+go 4 261
+call UP 6 261
+go 25 261
+call UP 10 261
+go 23 261
+call DOWN 28 261
+go 27 261
+call DOWN 25 261
+go 11 261
+call DOWN 33 261
+go 16 261
+call UP 5 261
+go 27 261
+call UP 14 261
+go 32 261
+call UP 7 261
+go 31 261
+call DOWN 24 261
+go 21 261
+call UP 3 262
+go 25 262
+call DOWN 20 263
+go 16 263
+call DOWN 33 263
+go 9 263
+call UP 12 263
+go 16 263
+call UP 16 263
+go 19 263
+call DOWN 20 264
+go 4 264
+call DOWN 26 264
+go 20 264
+call DOWN 8 265
+go 6 265
+call UP 23 265
+go 29 265
+call UP 1 266
+go 7 266
+call DOWN 8 266
+go 4 266
+call UP 19 266
+go 31 266
+call UP 10 266
+go 16 266
+call DOWN 30 266
+go 3 266
+call UP 11 267
+go 17 267
+call DOWN 25 267
+go 6 267
+call DOWN 30 267
+go 12 267
+call DOWN 33 267
+go 8 267
+call DOWN 18 267
+go 17 267
+call UP 6 267
+go 26 267
+call DOWN 33 267
+go 17 267
+call DOWN 30 267
+go 16 267
+call UP 7 267
+go 14 267
+call DOWN 23 267
+go 14 267
+call UP 2 267
+go 8 267
+call UP 11 267
+go 16 267
+call UP 7 267
+go 21 267
+call UP 3 267
+go 8 267
+call UP 22 267
+go 30 267
+call UP 18 268
+go 29 268
+call DOWN 16 268
+go 3 268
+call UP 26 268
+go 33 268
+call DOWN 28 269
+go 14 269
+call DOWN 33 269
+go 23 269
+call DOWN 23 269
+go 5 269
+call UP 20 270
+go 21 270
+call DOWN 32 270
+go 22 270
+call UP 16 270
+go 33 270
+call UP 16 270
+go 21 270
+call UP 4 270
+go 20 270
+call UP 1 270
+go 16 270
+call UP 20 270
+go 21 270
+call UP 7 271
+go 24 271
+call DOWN 15 272
+go 11 272
+call UP 5 273
+go 33 273
+call UP 23 273
+go 32 273
+call DOWN 30 273
+go 6 273
+call UP 6 273
+go 21 273
+call UP 7 274
+go 23 274
+call DOWN 26 274
+go 20 274
+call UP 1 274
+go 18 274
+call DOWN 27 274
+go 15 274
+call DOWN 21 274
+go 5 274
+call UP 9 274
+go 26 274
+call DOWN 8 274
+go 6 274
+call DOWN 26 274
+go 16 274
+call UP 16 274
+go 32 274
+call DOWN 17 275
+go 8 275
+call UP 10 275
+go 29 275
+call UP 4 275
+go 16 275
+call DOWN 16 275
+go 11 275
+call UP 12 275
+go 18 275
+call UP 6 275
+go 28 275
+call UP 18 275
+go 23 275
+call UP 17 275
+go 23 275
+call UP 10 276
+go 23 276
+call UP 20 276
+go 21 276
+call UP 12 277
+go 26 277
+call UP 13 277
+go 32 277
+call DOWN 6 278
+go 3 278
+call DOWN 27 278
+go 14 278
+call UP 28 278
+go 29 278
+call UP 2 279
+go 3 279
+call DOWN 33 280
+go 5 280
+call DOWN 30 281
+go 19 281
+call UP 6 282
+go 19 282
+call UP 2 282
+go 32 282
+call DOWN 27 283
+go 12 283
+call DOWN 8 283
+go 7 283
+call DOWN 29 283
+go 19 283
+call UP 1 284
+go 33 284
+call DOWN 22 284
+go 11 284
+call DOWN 31 284
+go 23 284
+call DOWN 33 285
+go 5 285
+call DOWN 26 285
+go 8 285
+call UP 19 286
+go 27 286
+call DOWN 30 287
+go 29 287
+call DOWN 11 287
+go 2 287
+call DOWN 17 288
+go 3 288
+call UP 2 289
+go 15 289
+call DOWN 28 290
+go 13 290
+call UP 2 290
+go 17 290
+call UP 4 290
+go 8 290
+call UP 19 290
+go 20 290
+call UP 4 290
+go 16 290
+call UP 3 290
+go 28 290
+call UP 11 290
+go 33 290
+call UP 5 290
+go 13 290
+call DOWN 15 290
+go 9 290
+call DOWN 23 290
+go 21 290
+call UP 25 290
+go 32 290
+call DOWN 29 290
+go 22 290
+call DOWN 30 290
+go 2 290
+call DOWN 32 291
+go 2 291
+call DOWN 27 292
+go 18 292
+call DOWN 16 292
+go 10 292
+call UP 9 292
+go 30 292
+call UP 5 292
+go 28 292
+call UP 1 292
+go 15 292
+call UP 6 292
+go 11 292
+call UP 15 292
+go 21 292
+call DOWN 33 293
+go 5 293
