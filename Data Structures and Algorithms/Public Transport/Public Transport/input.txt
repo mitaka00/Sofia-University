@@ -1,0 +1,17 @@
+3
+sliven 3
+94 3 100 200 300
+95 2 120 130
+96 2 220 230
+pleven 3
+94 3 100 200 300
+95 2 120 130
+96 2 220 230
+sofia 3
+94 3 100 200 300
+95 2 120 130
+96 2 220 230
+3
+94 3 sliven pleven sofia
+95 3 sofia pleven sofia
+96 3 pleven sliven sofia
