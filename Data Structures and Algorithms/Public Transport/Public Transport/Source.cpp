@@ -2,15 +2,17 @@
 #include <fstream>
 #include <vector>
 #include <string>
-#include <stack>
 #include <unordered_map>
-#include<queue>
-#include <set>
+#include <queue>
+#include <stack>
 
+///Infinity value (from exercises)
 # define INF 0x3f3f3f3f
+
 const char* fileName = "input.txt";
 
 using string = std::string;
+
 ///Stored info about lines of every bus
 using BusMap = std::unordered_map<int,std::vector<string>>; 
 ///Minutes of arrival of each bus at a stop
@@ -18,8 +20,8 @@ using ScheduleMap = std::unordered_map<int, std::vector<int>>;
 ///Stored info about schedule of each stop
 using StopsMap = std::unordered_map<std::string, ScheduleMap>; 
 
-using Edge = std::pair < std::string, std::pair<int,int> >;
-using Vertex = std::list< Edge >;
+using Edge = std::unordered_map<int, std::vector<int>>;
+using Vertex = std::unordered_map< string, Edge>;
 /// This struct represents a directed graph using 
 /// adjacency list representation 
 struct Graph
@@ -35,14 +37,7 @@ public:
 ///Add edge to Graph
 void Graph::addEdge(const string& firstStop, const string& secondStop, int weight,int busNumber)
 {
-	adj[firstStop].push_back(std::make_pair(secondStop, std::make_pair(busNumber, weight)));
-}
-
-///Create stop in graph for every stop in StopsMap
-void makeGraph(Graph& graph, StopsMap& stops) {
-	for (const std::pair<string, ScheduleMap>& stop : stops) {
-		graph.adj[stop.first];
-	}
+	adj[firstStop][secondStop][busNumber].push_back(weight);
 }
 
 ///Add edges in graph for every bus line
@@ -53,8 +48,13 @@ void addEdgesToGraph(Graph& graph, StopsMap& stops, BusMap& busses) {
 		{
 			string firstStop = bus.second[i - 1];
 			string secondStop = bus.second[i];
-			int timeToTravel = stops[secondStop][bus.first][0] - stops[firstStop][bus.first][0];
-			graph.addEdge(firstStop, secondStop, timeToTravel,bus.first);
+
+			for (int j = 0; j < stops[firstStop][bus.first].size(); j++)
+			{
+				int timeToTravel = stops[secondStop][bus.first][j] - stops[firstStop][bus.first][j];
+				graph.addEdge(firstStop, secondStop, timeToTravel, bus.first);
+			}
+			
 		}
 	}
 }
@@ -68,27 +68,15 @@ void fillDistanceAndParentContainers(std::unordered_map<string, int>& dist, std:
 	}
 }
 
-///Calculate when will come the bus
-int findMinutesOfStarting(int currentMinutes,const string& currentStop, int busNumber, StopsMap& stops) {
-	for (const int minutes:stops[currentStop][busNumber])
-	{
-		if (minutes >= currentMinutes) {
-			return minutes;
-		}
-	}
-
-	return 0;
-}
-
 ///Print the final result for shortest path (use it only in "shortestPath" function)
 void printResult(const string& from,const string& to, int startedMinutes, std::unordered_map<string, string>& parent, std::unordered_map<string, int>& dist) {
 	///Print the shortest time to reach the final destination
 	std::cout << "The fastest way to move from " << from << " to " << to << " will take you " << dist[to] - startedMinutes << " minutes. " <<
 		"You will arrive at "<<dist[to]<<" minutes\n";
 
-	///Print the path
+	///Print the path:
 
-	///Add path in stack
+	///1.Add path in stack
 	std::stack<string> path;
 	string currentStop=to;
 	path.push(to);
@@ -96,9 +84,9 @@ void printResult(const string& from,const string& to, int startedMinutes, std::u
 		currentStop = parent[currentStop];
 		path.push(currentStop);
 	} while (currentStop != "");
-	path.pop(); ///Pop the white space in stack
+	path.pop(); //Pop the white space in stack
 
-	///Print the elements in the stack
+	///2.Print the elements in the stack
 	std::cout << "This is the shortest path:\n";
 	while (!path.empty()) {
 		if (path.top() == to) {
@@ -111,19 +99,26 @@ void printResult(const string& from,const string& to, int startedMinutes, std::u
 	}
 }
 
-
+class Compare
+{
+public:
+	bool operator() (std::pair<string,int> firstParm, std::pair<string,int> secondParam)
+	{
+		return firstParm.second > secondParam.second;
+	}
+};
 
 ///Dejkstra algorithm
-//TODO... change set to priority queue
-void shortestPath(const string& src,const string& finalDistanation, int minutes, const Graph& graph, StopsMap& stops)
+void shortestPath(const string& src,const string& finalDistanation, int minutes, Graph& graph, StopsMap& stops)
 {
 	int startedMinutes = minutes;
 	if (graph.adj.find(src) == graph.adj.end() || graph.adj.find(finalDistanation) == graph.adj.end()) {
 		std::cout << "No path from " << src << " to " << finalDistanation << std::endl;
 		return;
 	}
-	/// Create a set to store vertices that are being processed 
-	std::set< string > setds;
+	/// Create a priority_queue to store vertices that are being processed 
+	//std::greater<std::pair<string, int>>
+	std::priority_queue<std::pair<string, int>, std::vector<std::pair<string, int>>, Compare> priorityQueue;
 
 	/// Create a map for distances
 	std::unordered_map<string, int> dist;
@@ -134,57 +129,60 @@ void shortestPath(const string& src,const string& finalDistanation, int minutes,
 	/// Fill distances as infinite (INF) and parents as empty string
 	fillDistanceAndParentContainers(dist, parent ,graph);
 	
-
-	/// Insert source itself in Set and initialize its 
+	/// Insert source itself in priority_queue and initialize its 
 	/// Distance as current minutes. 
-	setds.insert(src);
+	priorityQueue.push(std::make_pair(src, minutes));
 	dist[src] = minutes;
 
 	/** Looping till all shortest distance are finalized
-	 *	then setds will become empty 
+	 //	then the priority_queue will become empty 
 	 */
-	while (!setds.empty())
+	while (!priorityQueue.empty())
 	{
-		/// The first vertex in Set is the minimum distance 
-		/// vertex, extract it from set. 
-		string from = *(setds.begin());
-		setds.erase(setds.begin());
+		/// The first vertex in priority_queue is the minimum distance 
+		/// vertex, extract it from the queue. 
+		string from = priorityQueue.top().first;
+		priorityQueue.pop();
 
 		minutes = dist[from];
 		/// Vertex label is stored in second of pair (it 
 		/// has to be done this way to keep the vertices 
-		/// sorted distance (distance must be first item 
-		/// in pair) 
+		/// sorted distance
 
-		for (const Edge& el : (*graph.adj.find(from)).second)
+		for (const std::pair<string,Edge>& el : (*graph.adj.find(from)).second)
 		{
-			/// Get vertex label and weight of current adjacent 
-			/// of "from". 
 			string to = el.first;
-			int weight = el.second.second;
-			int busNumber = el.second.first;
 
-			///Minutes when bus start from this stop
-			int startingMinutes = findMinutesOfStarting(minutes, from, busNumber, stops);
-			int currentMinutes = INF;
-			if (startingMinutes != 0) {
-				currentMinutes = startingMinutes + weight;
-			}
-
-			/// If there is shorter path to "to" through "from". 
-			if (dist[to] > currentMinutes)
+			///Find the exact time of arrival of the buses after the current minute
+			for (const std::pair<int,std::vector<int>>& line : el.second)
 			{
-				/** If distance of "to" is not INF then it must be in
-				*our set, so removing it and inserting again
-				*with updated less distance.
-				 */
-				if (dist[to] != INF)
-					setds.erase(to);
+				int busNumber,weight;
+				int nextStopMinutes = 0;
 
-				/// Updating distance of "to" 
-				parent[to] = from;
-				dist[to] = currentMinutes;
-				setds.insert(to);
+				for (int i = 0; i < line.second.size(); i++)
+				{
+					if (stops[from][line.first][i] >= minutes) {
+						nextStopMinutes = stops[to][line.first][i];
+						weight = graph.adj[from][to][line.first][i];
+						busNumber = line.first;
+						
+						break;
+					}
+				}
+
+				int currentMinutes = INF;
+				if (nextStopMinutes != 0) {
+					currentMinutes = nextStopMinutes;
+				}
+
+				/// If there is shorter path to "to" through "from". 
+				if (dist[to] > currentMinutes)
+				{
+					/// Updating distance of "to" 
+					parent[to] = from;
+					dist[to] = currentMinutes;
+					priorityQueue.push(std::make_pair(to,currentMinutes));
+				}
 			}
 		}
 	}
@@ -199,32 +197,21 @@ void shortestPath(const string& src,const string& finalDistanation, int minutes,
 }
 
 ///Read stops information from file
-void readStops(StopsMap& stops, std::ifstream& in) {
-	int count, busCount, scheduleCount, busNumber, currentMinutes;
-	std::string name;
+void readStops(Graph& graph, StopsMap& stops, std::ifstream& in) {
+	int count;
+	string name;
 
 	in >> count;
 	for (int i = 0; i < count; i++)
 	{
 		in >> name;
-		in >> busCount;
-		for (int j = 0; j < busCount; j++)
-		{
-			in >> busNumber;
-			in >> scheduleCount;
-
-			stops[name][busNumber].reserve(scheduleCount);
-			for (int v = 0; v < scheduleCount; v++)
-			{
-				in >> currentMinutes;
-				stops[name][busNumber].push_back(currentMinutes);
-			}
-		}
+		stops[name];
+		graph.adj[name];
 	}
 }
 
 ///Read busses information from file
-void readBusses(BusMap& busses, std::ifstream& in) {
+void readBusses(Graph& graph, StopsMap& stops, BusMap& busses, std::ifstream& in) {
 	int count,number,stopsCount;
 	std::string stop;
 
@@ -240,18 +227,34 @@ void readBusses(BusMap& busses, std::ifstream& in) {
 			in >> stop;
 			busses[number].push_back(stop);
 		}
+
+		///Add minutes of the line
+		int minutes, coursesCount;
+		in >> coursesCount;
+
+		for (int i = 1; i <= coursesCount; i++)
+		{
+			for (int j = 0; j < stopsCount; j++)
+			{
+	
+				in >> minutes;
+
+				stops[busses[number][j]][number].push_back(minutes);
+			}
+		}
 	}
 }
 
 ///Read inputFile
-bool readFile(BusMap& busses, StopsMap& stops) {
+bool readFile(BusMap& busses, StopsMap& stops, Graph& graph) {
 	std::ifstream in(fileName);
 	if (!in) {
 		return false;
 	}
 
-	readStops(stops, in);
-	readBusses(busses, in);
+	readStops(graph, stops, in);
+	readBusses(graph,stops, busses, in);
+	addEdgesToGraph(graph, stops, busses);
 
 	return true;
 }
@@ -301,7 +304,8 @@ void printHelp() {
 		<< "\taddLine <busNumber> - add new bus with that number and make new line." << std::endl
 		<< "\tdeleteLine <busNumber> - delete bus with that number and delete the line." << std::endl
 		<< "\taddCourse <busNumber> - add new course at the end of any of the lines." << std::endl
-		<< "\tdeleteCourse <busNumber> - delete the last course at the end of \"busNumber\" line." << std::endl
+		<< "\tdeleteLastCourse <busNumber> - delete the last course at the end of \"busNumber\" line." << std::endl
+		<< "\tsave - save information in file." << std::endl
 		<< "\thelp - shows info about the commands." << std::endl
 		<< "\tfinish - terminates the program." << std::endl;
 }
@@ -414,7 +418,7 @@ void addNewLine(int& busNumber, BusMap& busses, StopsMap& stops, Graph& graph) {
 			isCorrect = false;
 		}
 		
-		///Check is already added in the line
+		///checks if it has already been added to the line
 		for (const string& stop:busses[busNumber])
 		{
 			if (stop == stopName) {
@@ -432,34 +436,36 @@ void addNewLine(int& busNumber, BusMap& busses, StopsMap& stops, Graph& graph) {
 		}
 	}
 
-	///Add the starting minutes of the line
-	int startingMinutes, coursesCount;
+	///Add minutes of the line
+	int minutes, coursesCount;
 	std::cout << "How much courses will make this line:";
 	std::cin >> coursesCount;
 
 	for (int i = 1; i <= coursesCount; i++)
 	{
-		std::cout << "Write the starting minutes of course " << i << ":";
-		std::cin >> startingMinutes;
+		std::cout << "Course number:" << i << "\n";
 
-		stops[busses[busNumber][0]][busNumber].push_back(startingMinutes);
+		for (int j = 0; j < busses[busNumber].size(); j++)
+		{
+			std::cout << "Bus arrives in " << busses[busNumber][j] << " at: ";
+			std::cin >> minutes;
+
+			stops[busses[busNumber][j]][busNumber].push_back(minutes);
+		}
 	}
 
-	///Add minutes that will take you to travel between every stop
-	int minutes;
+	//add line to graph
 	for (int i = 1; i < busses[busNumber].size(); i++)
 	{
-		string to = busses[busNumber][i];
-		string from = busses[busNumber][i - 1];
-		std::cout << "Write minutes that will take you to reach " << to << " from " << from << std::endl;
-		std::cin >> minutes;
+		string firstStop = busses[busNumber][i - 1];
+		string secondStop = busses[busNumber][i];
 
-		//Add edge in Graph
-		graph.addEdge(from, to, minutes, busNumber);
-		for (int j = 0; j < stops[from][busNumber].size(); j++)
+		for (int j = 0; j < stops[firstStop][busNumber].size(); j++)
 		{
-			stops[to][busNumber].push_back(stops[from][busNumber][j]+minutes);
+			int timeToTravel = stops[secondStop][busNumber][j] - stops[firstStop][busNumber][j];
+			graph.addEdge(firstStop, secondStop, timeToTravel, busNumber);
 		}
+
 	}
 
 	std::cout << "The line is added successfully\n";
@@ -479,18 +485,16 @@ void deleteLine(int& busNumber, BusMap& busses, StopsMap& stops, Graph& graph) {
 		stops[stop].erase(busNumber);
 
 		///Delete from Graph
-		std::list<Edge>::iterator i = (*graph.adj.find(stop)).second.begin();
-		while (i != (*graph.adj.find(stop)).second.end())
+		for (std::pair<string,Vertex> firstStop : graph.adj)
 		{
-			if ((*i).second.first==busNumber)
-			{
-				graph.adj[stop].erase(i++);
-				break;
+			for (std::pair<string, Edge> secondStop : firstStop.second) {
+				if (secondStop.second.find(busNumber) != secondStop.second.end()) {
+					graph.adj[firstStop.first][secondStop.first].erase(busNumber);
+				}
 			}
-			++i;
 		}
 	}
-
+	
 	///Delete from BusMap
 	busses.erase(busNumber);
 
@@ -498,7 +502,7 @@ void deleteLine(int& busNumber, BusMap& busses, StopsMap& stops, Graph& graph) {
 }
 
 ///Add new course to line
-void addNewCourse(int& busNumber ,BusMap& busses,StopsMap& stops , Graph& graph) {
+void addNewCourse(int& busNumber, BusMap& busses, StopsMap& stops, Graph& graph) {
 	///Course validation
 	if (busses.find(busNumber) == busses.end()) {
 		std::cout << "No bus with that number\n";
@@ -532,16 +536,16 @@ void addNewCourse(int& busNumber ,BusMap& busses,StopsMap& stops , Graph& graph)
 	///Write the time that will take you to reach the new stop from the last
 	int minutes;
 	string lastStopName = busses[busNumber][busses[busNumber].size() - 1];
-	std::cout << "How many minutes will take you to reach " << newStopName << " from " << lastStopName <<":";
-	std::cin >> minutes;
-
-	///Add edge in Graph
-	graph.addEdge(lastStopName, newStopName, minutes, busNumber);
-
-	///Update schedule for new line
-	for (const int minute: stops[lastStopName][busNumber])
+	for (int i = 0; i < stops[lastStopName][busNumber].size(); i++)
 	{
-		stops[newStopName][busNumber].push_back(minute + minutes);
+		int minutes;
+		std::cout << "Bus number " << busNumber << " arrives in " << lastStopName << " at " << stops[lastStopName][busNumber][i] << " minutes.\n";
+		std::cout << "How many minutes will take to arrive at " << newStopName << ": ";
+		std::cin >> minutes;
+
+		///Add info in Stops and Graph
+		stops[newStopName][busNumber].push_back(minutes+ stops[lastStopName][busNumber][i]);
+		graph.addEdge(lastStopName, newStopName, minutes, busNumber);
 	}
 
 	//add to BusMap
@@ -551,7 +555,7 @@ void addNewCourse(int& busNumber ,BusMap& busses,StopsMap& stops , Graph& graph)
 }
 
 ///Delete the last course of the line
-void deleteCourse(int& busNumber, BusMap& busses, StopsMap& stops, Graph& graph) {
+void deleteLastCourse(int& busNumber, BusMap& busses, StopsMap& stops, Graph& graph) {
 	///Course validation
 	if (busses.find(busNumber) == busses.end()) {
 		std::cout << "No bus with that number\n";
@@ -574,17 +578,8 @@ void deleteCourse(int& busNumber, BusMap& busses, StopsMap& stops, Graph& graph)
 
 	///Delete edge from Graph if this is not the last stop from the line
 	if (busses[busNumber].size() != 0) {
-		string updatedLastStop = busses[busNumber][busses[busNumber].size() - 1];;
-		std::list<Edge>::iterator i = (*graph.adj.find(updatedLastStop)).second.begin(); //get updated last stop iterator
-		while (i != (*graph.adj.find(updatedLastStop)).second.end())
-		{
-			if ((*i).second.first == busNumber)
-			{
-				graph.adj[updatedLastStop].erase(i++);
-				break;
-			}
-			++i;
-		}
+		string updatedLastStop = busses[busNumber][busses[busNumber].size() - 1];
+		graph.adj[updatedLastStop][lastStop].erase(busNumber);
 	}
 	
 	std::cout << "The stop " << lastStop << " is removed from the line of bus with number " << busNumber << std::endl;
@@ -592,16 +587,58 @@ void deleteCourse(int& busNumber, BusMap& busses, StopsMap& stops, Graph& graph)
 	///Check the length of the line.
 	///If the length is only one stop, you must delete it.
 	if (busses[busNumber].size() == 1) {
-		deleteCourse(busNumber, busses, stops, graph);
+		deleteLastCourse(busNumber, busses, stops, graph);
 	}
+}
+
+///Save schedule in file
+void saveSchedule(const BusMap& busses,  StopsMap& stops, const Graph& graph,std::ofstream& out) {
+	out << busses.size() << std::endl;
+	for (const std::pair<int, std::vector<string>> bus : busses) {
+		out << bus.first << " " << bus.second.size() << " ";
+		for (const string stop : bus.second) {
+			out << stop << " ";
+		}
+		out << std::endl;
+
+		int count = stops[bus.second[0]][bus.first].size();		//count of lines
+		out << count << std::endl;
+		for (int i = 0; i < count; i++)
+		{
+			for (const string stop : bus.second) {
+				out << stops[stop][bus.first][i] << " ";
+			}
+			out << std::endl;
+		}	
+	}
+}
+
+///Save information in file
+void save(const BusMap& busses, StopsMap& stops, const Graph& graph) {
+	std::ofstream out(fileName);
+	if (!out) {
+		std::cout<<"No file with name: "<<fileName;
+		return;
+	}
+
+	out << stops.size() <<std::endl;
+	for (const std::pair<string,ScheduleMap>& el : stops)
+	{
+		out << el.first <<" ";
+	}
+	out << std::endl;
+	saveSchedule(busses, stops, graph, out);
+
+	std::cout << "Information is saved in " << fileName <<std::endl;
 }
 
 int main() {
 	BusMap busses;
 	StopsMap stops;
+	Graph graph;
 
 	///Read input file
-	if (!readFile(busses, stops)) {
+	if (!readFile(busses, stops, graph)) {
 		std::cout << "No file with name " << fileName;
 		return 0;
 	}
@@ -609,11 +646,6 @@ int main() {
 	///Print info from file
 	printStops(stops);
 	printBusses(busses);
-
-	///Create graph
-	Graph graph;
-	makeGraph(graph, stops);
-	addEdgesToGraph(graph,stops,busses);
 
 	printHelp();
 
@@ -672,10 +704,13 @@ int main() {
 			std::cin >> busNumber;
 			addNewCourse(busNumber, busses, stops, graph);
 		}
-		else if (input == "deleteCourse") {
+		else if (input == "deleteLastCourse") {
 			int busNumber;
 			std::cin >> busNumber;
-			deleteCourse(busNumber, busses, stops, graph);
+			deleteLastCourse(busNumber, busses, stops, graph);
+		}
+		else if (input == "save") {
+			save(busses, stops, graph);
 		}
 		else if (input == "help") {
 			printHelp();
@@ -687,6 +722,6 @@ int main() {
 			std::cout << "Unknown command! Type 'help' for available commands." << std::endl;
 		}
 	}
-
+	
 	return 0;
 }

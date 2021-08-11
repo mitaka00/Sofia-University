@@ -1,18 +1,25 @@
+6
+lovech sliven sofia pleven burgas varna 
 4
-sliven 2
-94 5 100 200 300 400 500
-96 2 340 840
-pleven 3
-94 5 220 320 420 520 620
-95 3 90 290 490
-96 2 220 720
-sofia 3
-94 5 290 390 490 590 690
-95 3 20 220 420
-96 2 520 1020
-burgas 1
-95 3 290 490 690
+94 3 sliven pleven sofia 
+5
+100 220 340 
+200 300 400 
+300 350 500 
+400 600 800 
+900 1020 1120 
+95 3 sofia pleven burgas 
 3
-94 3 sliven pleven sofia
-95 3 sofia pleven burgas
-96 3 pleven sliven sofia
+20 90 290 
+220 300 400 
+350 440 600 
+96 3 pleven sliven sofia 
+3
+40 200 420 
+240 360 520 
+430 550 750 
+100 3 varna burgas sliven 
+3
+10 210 330 
+340 500 600 
+670 811 900 
