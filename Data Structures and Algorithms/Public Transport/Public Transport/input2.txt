@@ -1,9 +1,9 @@
 5
 sliven sofia pleven plovdiv razgrad
 2
-94 4 sliven pleven plovdiv sofia 
+d 4 sliven pleven plovdiv sofia 
 1
-10 15 170 190
+10 3 170 190
 95 4 sliven pleven razgrad sofia 
 1
 10 150 160 180

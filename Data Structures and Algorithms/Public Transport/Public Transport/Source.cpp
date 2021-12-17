@@ -7,9 +7,9 @@
 #include <stack>
 
 ///Infinity value (from exercises)
-# define INF 0x3f3f3f3f
+int const INF= 0x3f3f3f3f;
 
-const char* fileName = "input.txt";
+const char* fileName = "input2.txt";
 
 using string = std::string;
 
@@ -60,16 +60,17 @@ void addEdgesToGraph(Graph& graph, StopsMap& stops, BusMap& busses) {
 }
 
 ///Fill distance and parents containers with default values
-void fillDistanceAndParentContainers(std::unordered_map<string, int>& dist, std::unordered_map<string,string>& parent, const Graph& graph) {
+void fillDistanceAndParentContainers(std::unordered_map<string, int>& dist, std::unordered_map<string,std::pair<string,int>>& parent, const Graph& graph) {
 	for (const std::pair<string,Vertex>& stop: graph.adj)
 	{
 		dist[stop.first] = INF;
-		parent[stop.first] = "";
+		parent[stop.first].first = "";
+		parent[stop.first].second = 0;
 	}
 }
 
 ///Print the final result for shortest path (use it only in "shortestPath" function)
-void printResult(const string& from,const string& to, int startedMinutes, std::unordered_map<string, string>& parent, std::unordered_map<string, int>& dist) {
+void printResult(const string& from,const string& to, int startedMinutes, std::unordered_map<string, std::pair<string,int>>& parent, std::unordered_map<string, int>& dist) {
 	///Print the shortest time to reach the final destination
 	std::cout << "The fastest way to move from " << from << " to " << to << " will take you " << dist[to] - startedMinutes << " minutes. " <<
 		"You will arrive at "<<dist[to]<<" minutes\n";
@@ -77,25 +78,29 @@ void printResult(const string& from,const string& to, int startedMinutes, std::u
 	///Print the path:
 
 	///1.Add path in stack
-	std::stack<string> path;
+	std::stack<std::pair<string,int>> path;
 	string currentStop=to;
-	path.push(to);
+	path.push(std::make_pair(to,parent[currentStop].second));
 	do {
-		currentStop = parent[currentStop];
-		path.push(currentStop);
+		currentStop = parent[currentStop].first;
+		int busNumber = parent[currentStop].second;
+		path.push(std::make_pair(currentStop,busNumber));
 	} while (currentStop != "");
 	path.pop(); //Pop the white space in stack
 
 	///2.Print the elements in the stack
 	std::cout << "This is the shortest path:\n";
 	while (!path.empty()) {
-		if (path.top() == to) {
-			std::cout << path.top() << std::endl;
+		std::pair<string, int> current=path.top();
+		path.pop();
+		if (current.first == to) {
+			std::cout << current.first << std::endl;
 		}
 		else {
-			std::cout << path.top() << " -> ";
+			std::cout << current.first << "(" << path.top().second << ") -> ";
+		
 		}
-		path.pop();
+		
 	}
 }
 
@@ -124,7 +129,7 @@ void shortestPath(const string& src,const string& finalDistanation, int minutes,
 	std::unordered_map<string, int> dist;
 
 	/// Create a map for parent that will help you to find the correct path
-	std::unordered_map<string, string> parent;
+	std::unordered_map<string, std::pair<string,int>> parent;
 
 	/// Fill distances as infinite (INF) and parents as empty string
 	fillDistanceAndParentContainers(dist, parent ,graph);
@@ -179,7 +184,10 @@ void shortestPath(const string& src,const string& finalDistanation, int minutes,
 				if (dist[to] > currentMinutes)
 				{
 					/// Updating distance of "to" 
-					parent[to] = from;
+					//parent[to].first = from;
+					parent[to] = std::make_pair(from,busNumber);
+					//parent[from].second = busNumber;
+					
 					dist[to] = currentMinutes;
 					priorityQueue.push(std::make_pair(to,currentMinutes));
 				}
@@ -197,40 +205,58 @@ void shortestPath(const string& src,const string& finalDistanation, int minutes,
 }
 
 ///Read stops information from file
-void readStops(Graph& graph, StopsMap& stops, std::ifstream& in) {
+bool readStops(Graph& graph, StopsMap& stops, std::ifstream& in) {
 	int count;
 	string name;
 
 	in >> count;
+	if (count <= 0) {
+		return false;
+	}
 	for (int i = 0; i < count; i++)
 	{
 		in >> name;
 		stops[name];
 		graph.adj[name];
 	}
+
+	return true;
 }
 
 ///Read busses information from file
-void readBusses(Graph& graph, StopsMap& stops, BusMap& busses, std::ifstream& in) {
+bool readBusses(Graph& graph, StopsMap& stops, BusMap& busses, std::ifstream& in) {
 	int count,number,stopsCount;
 	std::string stop;
 
 	in >> count;
+	if (count <= 0) {
+		return false;
+	}
 	for (int i = 0; i < count; i++)
 	{
+		number = 0;
 		in >> number;
 		in >> stopsCount;
+		if (stopsCount <= 0 || number <= 0) {
+			return false;
+		}
 		busses[number].reserve(stopsCount);
 
 		for (int j = 0; j < stopsCount; j++)
 		{
 			in >> stop;
+			if (stops.find(stop)==stops.end()) {
+				return false;
+			}
 			busses[number].push_back(stop);
 		}
 
 		///Add minutes of the line
 		int minutes, coursesCount;
 		in >> coursesCount;
+		if (coursesCount < 0) {
+			return false;
+		}
 
 		for (int i = 1; i <= coursesCount; i++)
 		{
@@ -238,11 +264,20 @@ void readBusses(Graph& graph, StopsMap& stops, BusMap& busses, std::ifstream& in
 			{
 	
 				in >> minutes;
+				if (minutes < 0) {
+					return false;
+				}
 
+				if (j != 0) {
+					if (minutes < stops[busses[number][j-1]][number][j-1]) {
+						return false;
+					}
+				}
 				stops[busses[number][j]][number].push_back(minutes);
 			}
 		}
 	}
+	return true;
 }
 
 ///Read inputFile
@@ -251,9 +286,17 @@ bool readFile(BusMap& busses, StopsMap& stops, Graph& graph) {
 	if (!in) {
 		return false;
 	}
+	bool test;
 
-	readStops(graph, stops, in);
-	readBusses(graph,stops, busses, in);
+	test=readStops(graph, stops, in);
+	if (!test) {
+		return false;
+	}
+	test=readBusses(graph,stops, busses, in);
+	if (!test) {
+		return test;
+	}
+	
 	addEdgesToGraph(graph, stops, busses);
 
 	return true;
@@ -439,7 +482,13 @@ void addNewLine(int& busNumber, BusMap& busses, StopsMap& stops, Graph& graph) {
 	///Add minutes of the line
 	int minutes, coursesCount;
 	std::cout << "How much courses will make this line:";
-	std::cin >> coursesCount;
+	do {
+		std::cin >> coursesCount;
+		if (coursesCount < 0) {
+			std::cout << "Invalid courses count. Please try again.\n";
+		}
+	} while (coursesCount < 0);
+	
 
 	for (int i = 1; i <= coursesCount; i++)
 	{
@@ -449,6 +498,16 @@ void addNewLine(int& busNumber, BusMap& busses, StopsMap& stops, Graph& graph) {
 		{
 			std::cout << "Bus arrives in " << busses[busNumber][j] << " at: ";
 			std::cin >> minutes;
+
+			if (minutes <= 0) {
+				std::cout << "Invalid minutes. Please try again.\n";
+				j--;
+			}
+			else if (j != 0 && stops[busses[busNumber][j]][busNumber][j - 1] <= minutes) {
+				std::cout << "Invalid minutes. Please try again.\n";
+				j--;
+			}
+
 
 			stops[busses[busNumber][j]][busNumber].push_back(minutes);
 		}
