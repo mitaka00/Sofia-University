@@ -167,20 +167,12 @@ func playGame() {
 	var isLive bool = true
 	var minSum int = 0
 
-	//easyQuestionsToken := make([]Question, len(easyQuestions))
-	//mediumQuestionsToken := make([]Question, len(mediumQuestions))
-	//hardQuestionsToken := make([]Question, len(hardQuestions))
-	//copy(easyQuestionsToken, easyQuestions)
-	//copy(mediumQuestionsToken, mediumQuestions)
-	//copy(hardQuestionsToken, hardQuestions)
 	easyQuestionsToken = append([]Question(nil), easyQuestions...)
 	mediumQuestionsToken = append([]Question(nil), mediumQuestions...)
 	hardQuestionsToken = append([]Question(nil), hardQuestions...)
 
 	fmt.Println(easyQuestionsToken)
-	//easyQuestionsToken = append(easyQuestions)
-	//mediumQuestionsToken = append(mediumQuestions)
-	//hardQuestionsToken = append(hardQuestions)
+
 	audience = true
 	call = true
 	fifty = true
@@ -223,7 +215,7 @@ func playGame() {
 }
 
 func playCurrentQuestionGame(currentQuestion *int) bool {
-	fmt.Println("Question number ", *currentQuestion)
+	//fmt.Println("Question number ", *currentQuestion)
 
 	rand.Seed(time.Now().UnixNano())
 	var index int
